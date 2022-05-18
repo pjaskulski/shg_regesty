@@ -89,11 +89,11 @@ def rule_patterns() -> list:
         [{"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}], # szer. gr czes.
         [{"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"pras"}, {"IS_PUNCT":True}], # szer. gr pras.
         [{"LOWER":"ternar"}], # ternar
-        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}], # wiard.
-        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}, {"LOWER":"chełm"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}], # wiard. chełm. monety
-        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # wiard. monety pospolitej
-        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"tor"}, {"IS_PUNCT":True}], # wiard. monety tor.
-        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LOWER":"półgr"}], # wiard w półgr
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}], # wiard.
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LOWER":"chełm"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}], # wiard. chełm. monety
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # wiard. monety pospolitej
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"tor"}, {"IS_PUNCT":True}], # wiard. monety tor.
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LOWER":"półgr"}], # wiard w półgr
         [{"LOWER":"zł"}, {"POS":"ADJ"}], # zł czerwony
         [{"LOWER":"zł"}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}], # zł w bieżącej monecie
         [{"LOWER":"zł"}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"złoto"}], # zł w czystym złocie
@@ -105,5 +105,9 @@ def rule_patterns() -> list:
         [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"śl"}, {"IS_PUNCT":True}], # zł. monety śl.
         [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # zł. pol.
         [{"LOWER":"złoty"}, {"LOWER":"fl"}, {"IS_PUNCT":True}], # złoty fl.
+
+        # grz. średnich gr krak.
+        # grz. drobnych pieniędzy
+        # kóp gr szer. pras.
     ]
     return coin_patterns

@@ -130,3 +130,5 @@ dmypy.json
 *.csv
 *.xlsx
 output/*.txt
+wyniki/
+*.zip
