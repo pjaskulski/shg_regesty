@@ -155,8 +155,8 @@ if __name__ == '__main__':
 
         place_owner = {}
 
-        output_path = Path('.').parent / f'output/wyniki/regesty_{slowniki[nr]}.xlsx'
-        input_path = Path('.').parent / f'output/wyniki/hasla_{nr}_pkt.xlsx'
+        output_path = Path('.').parent / f'output/regesty_{slowniki[nr]}.xlsx'
+        input_path = Path('.').parent / f'output/hasla_{nr}_pkt.xlsx'
 
         wb_hasla = openpyxl.load_workbook(input_path)
         ws_hasla = wb_hasla.active
@@ -238,4 +238,3 @@ if __name__ == '__main__':
         print(f"p.{i}", regesty_count[i])
         suma += regesty_count[i]
     print(f"razem: {suma}")
-        
