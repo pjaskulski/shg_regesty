@@ -50,7 +50,60 @@ def rule_patterns() -> list:
         [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}], # grz. półgr szer.
         [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # grz. półgr pol.
         [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # grz. półgr lepszej monety krak.
-         
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"srebro"}], # grz. srebra
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}], # grz. szer. gr
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}], # grz. szer. gr czeskich
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LEMMA":"kwartnik"}], # grz. szer. kwartników
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # grz. szer. półgr większej monety krak.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"gr"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # grz. średnich gr monety krak.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}], # grz. w bieżącej monecie
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"grosz"}], # grz. w groszach
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"kwartnik"}], # grz. w kwartnikach
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # grz. w monecie bieżącej, pospolitej
+        [{"LEMMA":"kopa"}], # kopa [kop albo kóp]
+        [{"":""}, {"":""}], # kopa gr monety bieżącej, pospolitej
+        [{"":""}, {"":""}], # kopa gr w szelągach
+        [{"":""}, {"":""}], # kopa kwartników
+        [{"":""}, {"":""}], # kopa monety krak.
+        [{"":""}, {"":""}], # kopa monety obiegowej
+        [{"":""}, {"":""}], # kopa półgr
+        [{"":""}, {"":""}], # kopa (kopy) w monecie pospolitej
+        [{"":""}, {"":""}], # kopa zł. pol.
+        [{"":""}, {"":""}], # kopy w szer. gr czes.
+        [{"":""}, {"":""}], # kwartnik
+        [{"":""}, {"":""}], # obol
+        [{"":""}, {"":""}], # ort
+        [{"":""}, {"":""}], # pieniądz
+        [{"":""}, {"":""}], # półgr
+        [{"":""}, {"":""}], # rubel
+        [{"":""}, {"":""}], # sk.
+        [{"":""}, {"":""}], # sk. gr czes.
+        [{"":""}, {"":""}], # sk. gr czeskich
+        [{"":""}, {"":""}], # sk. monety krak.
+        [{"":""}, {"":""}], # sk. monety pospolitej
+        [{"":""}, {"":""}], # solid
+        [{"":""}, {"":""}], # sz.
+        [{"":""}, {"":""}], # szeląg
+        [{"":""}, {"":""}], # szeląg lit.
+        [{"":""}, {"":""}], # szer. gr czes.
+        [{"":""}, {"":""}], # szer. gr pras.
+        [{"":""}, {"":""}], # ternar
+        [{"":""}, {"":""}], # wiard.
+        [{"":""}, {"":""}], # wiard. chełm. monety
+        [{"":""}, {"":""}], # wiard. monety pospolitej
+        [{"":""}, {"":""}], # wiard. monety tor.
+        [{"":""}, {"":""}], # wiard w półgr
+        [{"":""}, {"":""}], # zł czerwony
+        [{"":""}, {"":""}], # zł w bieżącej monecie
+        [{"":""}, {"":""}], # zł w czystym złocie
+        [{"":""}, {"":""}], # zł w półgr starych
+        [{"":""}, {"":""}], # zł w złocie
+        [{"":""}, {"":""}], # zł węg.
+        [{"":""}, {"":""}], # zł. czerwony węg.
+        [{"":""}, {"":""}], # zł. lit.
+        [{"":""}, {"":""}], # zł. monety śl.
+        [{"":""}, {"":""}], # zł. pol.
+        [{"":""}, {"":""}], # złoty fl.
         
 
     ]
@@ -69,7 +122,8 @@ Jan Bycyński jest winien 1 czerwonego fl. księciu Zygmuntowi z Cieszyna a jeż
 nie zapłaci do żniw to dług wzrośnie do 2 fl. monety polskiej. Wiadro owsa kosztuje
 w Krakowie 1. den. litewskiego a wiadro żyta 2 den. lit. Naprawa młyna kosztowała
 12 krakowskich zł i 2 denary dla mistrza Jana a prac. Maciej wziął 1 fl. węg.
-Opat Józef nabył konia za 2 grz. monety obiegowej od kupca Likiera."""
+Opat Józef nabył konia za 2 grz. monety obiegowej od kupca Likiera. Od tegoż kupca
+nabył także za 2 grz. w groszach wóz siana dobrego."""
 
     doc = nlp(tekst)
     matches = matcher(doc)
@@ -89,3 +143,4 @@ Opat Józef nabył konia za 2 grz. monety obiegowej od kupca Likiera."""
 # denary
 # fl. węg.
 # grz. monety obiegowej
+# grz. w groszach
