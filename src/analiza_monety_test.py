@@ -61,51 +61,52 @@ def rule_patterns() -> list:
         [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"kwartnik"}], # grz. w kwartnikach
         [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # grz. w monecie bieżącej, pospolitej
         [{"LEMMA":"kopa"}], # kopa [kop albo kóp]
-        [{"":""}, {"":""}], # kopa gr monety bieżącej, pospolitej
-        [{"":""}, {"":""}], # kopa gr w szelągach
-        [{"":""}, {"":""}], # kopa kwartników
-        [{"":""}, {"":""}], # kopa monety krak.
-        [{"":""}, {"":""}], # kopa monety obiegowej
-        [{"":""}, {"":""}], # kopa półgr
-        [{"":""}, {"":""}], # kopa (kopy) w monecie pospolitej
-        [{"":""}, {"":""}], # kopa zł. pol.
-        [{"":""}, {"":""}], # kopy w szer. gr czes.
-        [{"":""}, {"":""}], # kwartnik
-        [{"":""}, {"":""}], # obol
-        [{"":""}, {"":""}], # ort
-        [{"":""}, {"":""}], # pieniądz
-        [{"":""}, {"":""}], # półgr
-        [{"":""}, {"":""}], # rubel
-        [{"":""}, {"":""}], # sk.
-        [{"":""}, {"":""}], # sk. gr czes.
-        [{"":""}, {"":""}], # sk. gr czeskich
-        [{"":""}, {"":""}], # sk. monety krak.
-        [{"":""}, {"":""}], # sk. monety pospolitej
-        [{"":""}, {"":""}], # solid
-        [{"":""}, {"":""}], # sz.
-        [{"":""}, {"":""}], # szeląg
-        [{"":""}, {"":""}], # szeląg lit.
-        [{"":""}, {"":""}], # szer. gr czes.
-        [{"":""}, {"":""}], # szer. gr pras.
-        [{"":""}, {"":""}], # ternar
-        [{"":""}, {"":""}], # wiard.
-        [{"":""}, {"":""}], # wiard. chełm. monety
-        [{"":""}, {"":""}], # wiard. monety pospolitej
-        [{"":""}, {"":""}], # wiard. monety tor.
-        [{"":""}, {"":""}], # wiard w półgr
-        [{"":""}, {"":""}], # zł czerwony
-        [{"":""}, {"":""}], # zł w bieżącej monecie
-        [{"":""}, {"":""}], # zł w czystym złocie
-        [{"":""}, {"":""}], # zł w półgr starych
-        [{"":""}, {"":""}], # zł w złocie
-        [{"":""}, {"":""}], # zł węg.
-        [{"":""}, {"":""}], # zł. czerwony węg.
-        [{"":""}, {"":""}], # zł. lit.
-        [{"":""}, {"":""}], # zł. monety śl.
-        [{"":""}, {"":""}], # zł. pol.
-        [{"":""}, {"":""}], # złoty fl.
-        
-
+        [{"LOWER":"kop"}], # kop
+        [{"LOWER":"kóp"}], # kóp
+        [{"LEMMA":"kopa"}, {"LOWER":"gr"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # kopa gr monety bieżącej, pospolitej
+        [{"LEMMA":"kopa"}, {"LOWER":"gr"}, {"LOWER":"w"}, {"LEMMA":"szeląg"}], # kopa gr w szelągach
+        [{"LEMMA":"kopa"}, {"LEMMA":"kwartnik"}], # kopa kwartników
+        [{"LEMMA":"kopa"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # kopa monety krak.
+        [{"LEMMA":"kopa"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # kopa monety obiegowej
+        [{"LEMMA":"kopa"}, {"LOWER":"półgr"}], # kopa półgr
+        [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # kopa (kopy) w monecie pospolitej
+        [{"LEMMA":"kopa"}, {"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # kopa zł. pol.
+        [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"},{"IS_PUNCT":True}], # kopy w szer. gr czes.
+        [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}], # kopy w szer. gr czeskich
+        [{"LEMMA":"kwartnik"}], # kwartnik
+        [{"LEMMA":"obol"}], # obol
+        [{"LOWER":"ort"}], # ort
+        [{"LEMMA":"pieniądz"}], # pieniądz
+        [{"LOWER":"półgr"}], # półgr
+        [{"LEMMA":"rubel"}], # rubel
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}], # sk.
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LOWER":"gr"}], # sk. gr czes.
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LOWER":"gr"}], # sk. gr czeskich
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # sk. monety krak.
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # sk. monety pospolitej
+        [{"LEMMA":"solid"}], # solid
+        [{"LOWER":"sz"}, {"IS_PUNCT":True}], # sz.
+        [{"LEMMA":"szeląg"}], # szeląg
+        [{"LEMMA":"szeląg"}, {"LOWER":"lit"}, {"IS_PUNCT":True}], # szeląg lit.
+        [{"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}], # szer. gr czes.
+        [{"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"pras"}, {"IS_PUNCT":True}], # szer. gr pras.
+        [{"LOWER":"ternar"}], # ternar
+        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}], # wiard.
+        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}, {"LOWER":"chełm"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}], # wiard. chełm. monety
+        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # wiard. monety pospolitej
+        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"tor"}, {"IS_PUNCT":True}], # wiard. monety tor.
+        [{"LOWER":"wiadr"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LOWER":"półgr"}], # wiard w półgr
+        [{"LOWER":"zł"}, {"POS":"ADJ"}], # zł czerwony
+        [{"LOWER":"zł"}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}], # zł w bieżącej monecie
+        [{"LOWER":"zł"}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"złoto"}], # zł w czystym złocie
+        [{"LOWER":"zł"}, {"LOWER":"w"}, {"LOWER":"półgr"}, {"POS":"ADJ"}], # zł w półgr starych
+        [{"LOWER":"zł"}, {"LOWER":"w"}, {"LEMMA":"złoto"}], # zł w złocie
+        [{"LOWER":"zł"}, {"LOWER":"węg"}, {"IS_PUNCT":True}], # zł węg.
+        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"węg"}, {"IS_PUNCT":True}], # zł. czerwony węg.
+        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"lit"}, {"IS_PUNCT":True}], # zł. lit.
+        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"śl"}, {"IS_PUNCT":True}], # zł. monety śl.
+        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # zł. pol.
+        [{"LOWER":"złoty"}, {"LOWER":"fl"}, {"IS_PUNCT":True}], # złoty fl.
     ]
     return coin_patterns
 
@@ -123,7 +124,9 @@ nie zapłaci do żniw to dług wzrośnie do 2 fl. monety polskiej. Wiadro owsa k
 w Krakowie 1. den. litewskiego a wiadro żyta 2 den. lit. Naprawa młyna kosztowała
 12 krakowskich zł i 2 denary dla mistrza Jana a prac. Maciej wziął 1 fl. węg.
 Opat Józef nabył konia za 2 grz. monety obiegowej od kupca Likiera. Od tegoż kupca
-nabył także za 2 grz. w groszach wóz siana dobrego."""
+nabył także za 2 grz. w groszach wóz siana dobrego. Z miasta Biała podatku 
+3 kopy monety obiegowej i kopę kwartników. Abacy winien jest kupcom z Orawy 4 solidy za rzemienie,
+kopę monety krak. za drewno, oraz grz. w monecie krakowskiej za dzierżawę wozów."""
 
     doc = nlp(tekst)
     matches = matcher(doc)
@@ -144,3 +147,8 @@ nabył także za 2 grz. w groszach wóz siana dobrego."""
 # fl. węg.
 # grz. monety obiegowej
 # grz. w groszach
+# kopy monety obiegowej
+# kopę kwartników
+# solidy
+# kopę monety krak.
+# grz. w monecie krakowskiej
