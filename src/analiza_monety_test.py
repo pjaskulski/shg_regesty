@@ -88,3 +88,4 @@ Opat Józef nabył konia za 2 grz. monety obiegowej od kupca Likiera."""
 # krakowskich zł
 # denary
 # fl. węg.
+# grz. monety obiegowej
