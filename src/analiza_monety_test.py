@@ -22,6 +22,36 @@ def rule_patterns() -> list:
         [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # fl. pol.
         [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"złoto"}], # fl. w złocie
         [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LOWER":"półgr"}, {"IS_PUNCT":True}], # fl. w półgr.
+        [{"LOWER":"gr"}],
+        [{"LOWER":"gr"}, {"POS":"ADJ"}], # grosz czeski, grosz praski, grosz litewski, grosz szeroki
+        [{"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}], # grosz czes.
+        [{"LOWER":"gr"}, {"LOWER":"lit"}, {"IS_PUNCT":True}], # grosz lit.
+        [{"LOWER":"gr"}, {"LOWER":"pras"}, {"IS_PUNCT":True}], # grosz pras.
+        [{"LOWER":"gr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}], # grosz szer.
+        [{"LOWER":"gr"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # gr monety krakowskiej, gr monety pospolitej
+        [{"LOWER":"gr"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # gr monety krak.
+        [{"LOWER":"gr"}, {"LEMMA":"moneta"}, {"LOWER":"posp"}, {"IS_PUNCT":True}], # gr monety posp.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}], # grz.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}], # grz. czeska
+        [{"LOWER":"grz"}, {"LOWER":""}],
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}], # grz. gr
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}], # grz. gr czes.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}], # grz. gr czeskich, pospolitych
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"posp"}, {"IS_PUNCT":True}], # grz. gr posp.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"pras"}, {"IS_PUNCT":True}], # grz. gr pras.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}], # grz. gr szer.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"kwartnik"}], # grz. kwartników
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # grz. lepszej monety krak., pospolitej monety krak.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # grz. monety obiegowej
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"posp"}, {"IS_PUNCT":True}],
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LEMMA":"moneta"}], # grz. obiegowej monety, pospolitej monety
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}], # grz. półgr
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}], # grz. półgr polskich, szerokich, praskich
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}], # grz. półgr szer.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # grz. półgr pol.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # grz. półgr lepszej monety krak.
+         
+        
 
     ]
     return coin_patterns
@@ -38,7 +68,8 @@ if __name__ == "__main__":
 Jan Bycyński jest winien 1 czerwonego fl. księciu Zygmuntowi z Cieszyna a jeżeli
 nie zapłaci do żniw to dług wzrośnie do 2 fl. monety polskiej. Wiadro owsa kosztuje
 w Krakowie 1. den. litewskiego a wiadro żyta 2 den. lit. Naprawa młyna kosztowała
-12 krakowskich zł i 2 denary dla mistrza Jana a prac. Maciej wziął 1 fl. węg."""
+12 krakowskich zł i 2 denary dla mistrza Jana a prac. Maciej wziął 1 fl. węg.
+Opat Józef nabył konia za 2 grz. monety obiegowej od kupca Likiera."""
 
     doc = nlp(tekst)
     matches = matcher(doc)
