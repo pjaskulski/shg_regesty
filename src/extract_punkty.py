@@ -10,7 +10,8 @@ OUTPUT: "hasla_id_name.csv", "hasla_id_name.xlsx", "data_pkt.csv", "data_pkt.xls
     hasla_id_name: zawiera nazwę, id, punkty od 0 do 9 (plus uwagi w 10)
     data_pkt: oryginalny zbiór danych (haseł słownikowych) z dołożonymi kolumnami 0 do 10 (j.w.)
 
-@author: Anna Fiedukowicz
+@author: Anna Fiedukowicz https://github.com/fragaria1/SHG_feature_extraction
+(modyfikacje: Piotr Jaskulski)
 """
 
 import pandas as pd
