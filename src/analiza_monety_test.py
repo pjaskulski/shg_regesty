@@ -47,3 +47,13 @@ w Krakowie 1. den. litewskiego a wiadro żyta 2 den. lit. Naprawa młyna kosztow
     spans = [doc[start:end] for _, start, end in matches]
     for span in spacy.util.filter_spans(spans):
         print(span.text)
+
+# WYNIK:
+# czerwonych zł
+# czerwonego fl.
+# fl. monety polskiej
+# den. litewskiego
+# den. lit.
+# krakowskich zł
+# denary
+# fl. węg.
