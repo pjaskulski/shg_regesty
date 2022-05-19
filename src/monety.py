@@ -4,110 +4,878 @@
 def rule_patterns() -> list:
     """ definicje reguł """
     coin_patterns = [
-        [{"POS":"ADJ"}, {"LOWER":"zł"}], # czerwony zł
-        [{"POS":"ADJ"}, {"LOWER":"fl"}, {"IS_PUNCT":True}], # czerwony fl.
-        [{"POS":"ADJ"}, {"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"węg"}, {"IS_PUNCT":True}], # czerwony fl. węg.
-        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"węg"}, {"IS_PUNCT":True}], # fl. węg.
-        [{"POS":"ADJ"}, {"LOWER":"fl"}, {"IS_PUNCT":True}, {"POS":"ADJ"}], # czerwony fl. węgierski
-        [{"LEMMA":"denar"}], # denar
-        [{"LOWER":"den"}, {"IS_PUNCT":True}], # den.
-        [{"LOWER":"den"}, {"IS_PUNCT":True}, {"LOWER":"chełm"}, {"IS_PUNCT":True}], # den. chełm.
-        [{"LOWER":"den"}, {"IS_PUNCT":True}, {"LOWER":"kol"}, {"IS_PUNCT":True}], # den. kol.
-        [{"LOWER":"den"}, {"IS_PUNCT":True}, {"LOWER":"lit"}, {"IS_PUNCT":True}], # den. lit.
-        [{"LOWER":"den"}, {"IS_PUNCT":True}, {"POS":"ADJ"}], # den. litewski
-        [{"LOWER":"fl"}, {"IS_PUNCT":True}],  # fl.
-        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # fl. monety polskiej
-        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # fl. pol.
-        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"złoto"}], # fl. w złocie
-        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LOWER":"półgr"}, {"IS_PUNCT":True}], # fl. w półgr.
+        # czerwony zł
+        [{"POS":"ADJ"}, {"LOWER":"zł"}],
+        # czerwony fl.
+        [{"POS":"ADJ"}, {"LOWER":"fl"}, {"IS_PUNCT":True}],
+        # czerwony fl. węg.
+        [{"POS":"ADJ"}, {"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"węg"}, {"IS_PUNCT":True}],
+        # fl. węg.
+        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"węg"}, {"IS_PUNCT":True}],
+        # czerwony fl. węgierski
+        [{"POS":"ADJ"}, {"LOWER":"fl"}, {"IS_PUNCT":True}, {"POS":"ADJ"}],
+        # denar
+        [{"LEMMA":"denar"}],
+        # denar litewski
+        [{"LEMMA":"denar"}, {"POS":"ADJ"}],
+        # denar chełm.
+        [{"LEMMA":"denar"}, {"LOWER":"chełm"}, {"IS_PUNCT":True}],
+        # denar kol.
+        [{"LEMMA":"denar"}, {"LOWER":"kol"}, {"IS_PUNCT":True}],
+        # denar lit.
+        [{"LEMMA":"denar"}, {"LOWER":"lit"}, {"IS_PUNCT":True}],
+        # den.
+        [{"LOWER":"den"}, {"IS_PUNCT":True}],
+        # den. chełm.
+        [{"LOWER":"den"}, {"IS_PUNCT":True}, {"LOWER":"chełm"}, {"IS_PUNCT":True}],
+        # den. kol.
+        [{"LOWER":"den"}, {"IS_PUNCT":True}, {"LOWER":"kol"}, {"IS_PUNCT":True}],
+        # den. lit.
+        [{"LOWER":"den"}, {"IS_PUNCT":True}, {"LOWER":"lit"}, {"IS_PUNCT":True}],
+        # den. litewski
+        [{"LOWER":"den"}, {"IS_PUNCT":True}, {"POS":"ADJ"}],
+        # fl.
+        [{"LOWER":"fl"}, {"IS_PUNCT":True}],
+        # fl. monety polskiej
+        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}],
+        # fl. pol.
+        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}],
+        # fl. w złocie
+        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"złoto"}],
+        # fl. w półgr.
+        [{"LOWER":"fl"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LOWER":"półgr"}, {"IS_PUNCT":True}],
+        # gr
         [{"LOWER":"gr"}],
-        [{"LOWER":"gr"}, {"POS":"ADJ"}], # grosz czeski, grosz praski, grosz litewski, grosz szeroki
-        [{"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}], # grosz czes.
-        [{"LOWER":"gr"}, {"LOWER":"lit"}, {"IS_PUNCT":True}], # grosz lit.
-        [{"LOWER":"gr"}, {"LOWER":"pras"}, {"IS_PUNCT":True}], # grosz pras.
-        [{"LOWER":"gr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}], # grosz szer.
-        [{"LOWER":"gr"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # gr monety krakowskiej, gr monety pospolitej
-        [{"LOWER":"gr"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # gr monety krak.
-        [{"LOWER":"gr"}, {"LEMMA":"moneta"}, {"LOWER":"posp"}, {"IS_PUNCT":True}], # gr monety posp.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}], # grz.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}], # grz. czeska
-        [{"LOWER":"grz"}, {"LOWER":""}],
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}], # grz. gr
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}], # grz. gr czes.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}], # grz. gr czeskich, pospolitych
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"posp"}, {"IS_PUNCT":True}], # grz. gr posp.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"pras"}, {"IS_PUNCT":True}], # grz. gr pras.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}], # grz. gr szer.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"kwartnik"}], # grz. kwartników
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # grz. lepszej monety krak., pospolitej monety krak.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # grz. monety obiegowej
+        # grosz czeski, grosz praski, grosz litewski, grosz szeroki
+        [{"LOWER":"gr"}, {"POS":"ADJ"}],
+        # grosz czes.
+        [{"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}],
+        # grosz lit.
+        [{"LOWER":"gr"}, {"LOWER":"lit"}, {"IS_PUNCT":True}],
+        # grosz pras.
+        [{"LOWER":"gr"}, {"LOWER":"pras"}, {"IS_PUNCT":True}],
+        # grosz szer.
+        [{"LOWER":"gr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}],
+        # gr monety krakowskiej, gr monety pospolitej
+        [{"LOWER":"gr"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}],
+        # gr monety krak.
+        [{"LOWER":"gr"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
+        # gr monety posp.
+        [{"LOWER":"gr"}, {"LEMMA":"moneta"}, {"LOWER":"posp"}, {"IS_PUNCT":True}],
+        # grz.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}],
+        # grz. czeska
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}],
+        # grz. gr
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}],
+         # grz. gr czes.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}],
+        # grz. gr czeskich, pospolitych
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}],
+        # grz. gr posp.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"posp"}, {"IS_PUNCT":True}],
+        # grz. gr pras.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"pras"}, {"IS_PUNCT":True}],
+        # grz. gr szer.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}],
+        # grz. kwartników
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"kwartnik"}],
+        # grz. lepszej monety krak., pospolitej monety krak.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
+        # grz. monety obiegowej
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}],
+        # grz. monety posp.
         [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"posp"}, {"IS_PUNCT":True}],
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LEMMA":"moneta"}], # grz. obiegowej monety, pospolitej monety
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}], # grz. półgr
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}], # grz. półgr polskich, szerokich, praskich
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}], # grz. półgr szer.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # grz. półgr pol.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # grz. półgr lepszej monety krak.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"srebro"}], # grz. srebra
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}], # grz. szer. gr
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}], # grz. szer. gr czeskich
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LEMMA":"kwartnik"}], # grz. szer. kwartników
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # grz. szer. półgr większej monety krak.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"gr"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # grz. średnich gr monety krak.
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}], # grz. w bieżącej monecie
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"grosz"}], # grz. w groszach
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"kwartnik"}], # grz. w kwartnikach
-        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # grz. w monecie bieżącej, pospolitej
-        [{"LEMMA":"kopa"}], # kopa [kop albo kóp]
-        [{"LOWER":"kop"}], # kop
-        [{"LOWER":"kóp"}], # kóp
-        [{"LEMMA":"kopa"}, {"LOWER":"gr"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # kopa gr monety bieżącej, pospolitej
-        [{"LEMMA":"kopa"}, {"LOWER":"gr"}, {"LOWER":"w"}, {"LEMMA":"szeląg"}], # kopa gr w szelągach
-        [{"LEMMA":"kopa"}, {"LEMMA":"kwartnik"}], # kopa kwartników
-        [{"LEMMA":"kopa"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # kopa monety krak.
-        [{"LEMMA":"kopa"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # kopa monety obiegowej
-        [{"LEMMA":"kopa"}, {"LOWER":"półgr"}], # kopa półgr
-        [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # kopa (kopy) w monecie pospolitej
-        [{"LEMMA":"kopa"}, {"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # kopa zł. pol.
-        [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"},{"IS_PUNCT":True}], # kopy w szer. gr czes.
-        [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}], # kopy w szer. gr czeskich
-        [{"LEMMA":"kwartnik"}], # kwartnik
-        [{"LEMMA":"obol"}], # obol
-        [{"LOWER":"ort"}], # ort
-        [{"LEMMA":"pieniądz"}], # pieniądz
-        [{"LOWER":"półgr"}], # półgr
-        [{"LEMMA":"rubel"}], # rubel
-        [{"LOWER":"sk"}, {"IS_PUNCT":True}], # sk.
-        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LOWER":"gr"}], # sk. gr czes.
-        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LOWER":"gr"}], # sk. gr czeskich
-        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}], # sk. monety krak.
-        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # sk. monety pospolitej
-        [{"LEMMA":"solid"}], # solid
-        [{"LOWER":"sz"}, {"IS_PUNCT":True}], # sz.
-        [{"LEMMA":"szeląg"}], # szeląg
-        [{"LEMMA":"szeląg"}, {"LOWER":"lit"}, {"IS_PUNCT":True}], # szeląg lit.
-        [{"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}], # szer. gr czes.
-        [{"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"pras"}, {"IS_PUNCT":True}], # szer. gr pras.
-        [{"LOWER":"ternar"}], # ternar
-        [{"LOWER":"wiard"}, {"IS_PUNCT":True}], # wiard.
-        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LOWER":"chełm"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}], # wiard. chełm. monety
-        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}], # wiard. monety pospolitej
-        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"tor"}, {"IS_PUNCT":True}], # wiard. monety tor.
-        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LOWER":"półgr"}], # wiard w półgr
-        [{"LOWER":"zł"}, {"POS":"ADJ"}], # zł czerwony
-        [{"LOWER":"zł"}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}], # zł w bieżącej monecie
-        [{"LOWER":"zł"}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"złoto"}], # zł w czystym złocie
-        [{"LOWER":"zł"}, {"LOWER":"w"}, {"LOWER":"półgr"}, {"POS":"ADJ"}], # zł w półgr starych
-        [{"LOWER":"zł"}, {"LOWER":"w"}, {"LEMMA":"złoto"}], # zł w złocie
-        [{"LOWER":"zł"}, {"LOWER":"węg"}, {"IS_PUNCT":True}], # zł węg.
-        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"węg"}, {"IS_PUNCT":True}], # zł. czerwony węg.
-        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"lit"}, {"IS_PUNCT":True}], # zł. lit.
-        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"śl"}, {"IS_PUNCT":True}], # zł. monety śl.
-        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}], # zł. pol.
-        [{"LOWER":"złoty"}, {"LOWER":"fl"}, {"IS_PUNCT":True}], # złoty fl.
-
+        # grz. obiegowej monety, pospolitej monety
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LEMMA":"moneta"}],
+        # grz. półgr
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}],
+        # grz. półgr polskich, szerokich, praskich
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}],
+        # grz. półgr szer.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}],
+         # grz. półgr pol.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"LOWER":"pol"}, {"IS_PUNCT":True}],
+        # grz. półgr lepszej monety krak.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
+        # grz. srebra
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LEMMA":"srebro"}],
+        # grz. szer. gr
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}],
+        # grz. szer. gr czeskich
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}],
+        # grz. szer. kwartników
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LEMMA":"kwartnik"}],
+         # grz. szer. półgr większej monety krak.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"półgr"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
+        # grz. średnich gr monety krak.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"gr"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
+        # grz. w bieżącej monecie
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}],
+        # grz. w groszach
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"grosz"}],
+        # grz. w kwartnikach
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"kwartnik"}],
+        # grz. w monecie bieżącej, pospolitej
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}],
+        # kopa [kop albo kóp]
+        [{"LEMMA":"kopa"}],
+        # kop
+        [{"LOWER":"kop"}],
+        # kóp
+        [{"LOWER":"kóp"}],
+        # kopa gr monety bieżącej, pospolitej
+        [{"LEMMA":"kopa"}, {"LOWER":"gr"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}],
+        # kopa gr w szelągach
+        [{"LEMMA":"kopa"}, {"LOWER":"gr"}, {"LOWER":"w"}, {"LEMMA":"szeląg"}],
+        # kopa kwartników
+        [{"LEMMA":"kopa"}, {"LEMMA":"kwartnik"}],
+        # kopa monety krak.
+        [{"LEMMA":"kopa"}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
+        # kopa monety obiegowej
+        [{"LEMMA":"kopa"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}],
+        # kopa półgr
+        [{"LEMMA":"kopa"}, {"LOWER":"półgr"}],
+        # kopa (kopy) w monecie pospolitej
+        [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LEMMA":"moneta"}, {"POS":"ADJ"}],
+        # kopa zł. pol.
+        [{"LEMMA":"kopa"}, {"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}],
+        # kopy w szer. gr czes.
+        [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"},{"IS_PUNCT":True}],
+        # kopy w szer. gr czeskich
+        [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}],
+        # kwartnik
+        [{"LEMMA":"kwartnik"}],
+        # obol
+        [{"LEMMA":"obol"}],
+        # ort
+        [{"LOWER":"ort"}],
+        # pieniądz
+        [{"LEMMA":"pieniądz"}],
+        # półgr
+        [{"LOWER":"półgr"}],
+        # rubel
+        [{"LEMMA":"rubel"}],
+        # sk.
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}],
+        # sk. gr czes.
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LOWER":"gr"}],
+        # sk. gr czeskich
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LOWER":"gr"}],
+        # sk. monety krak.
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
+        # sk. monety pospolitej
+        [{"LOWER":"sk"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}],
+        # solid
+        [{"LEMMA":"solid"}],
+        # sz.
+        [{"LOWER":"sz"}, {"IS_PUNCT":True}],
+        # szeląg
+        [{"LEMMA":"szeląg"}],
+        # szeląg lit.
+        [{"LEMMA":"szeląg"}, {"LOWER":"lit"}, {"IS_PUNCT":True}],
+        # szer. gr czes.
+        [{"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"}, {"IS_PUNCT":True}],
+        # szer. gr pras.
+        [{"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"pras"}, {"IS_PUNCT":True}],
+        # ternar
+        [{"LOWER":"ternar"}],
+        # wiard.
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}],
+        # wiard. chełm. monety
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LOWER":"chełm"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}],
+        # wiard. monety pospolitej
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"POS":"ADJ"}],
+        # wiard. monety tor.
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"tor"}, {"IS_PUNCT":True}],
+        # wiard w półgr
+        [{"LOWER":"wiard"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LOWER":"półgr"}],
+        # zł czerwony
+        [{"LOWER":"zł"}, {"POS":"ADJ"}],
+        # zł w bieżącej monecie
+        [{"LOWER":"zł"}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"moneta"}],
+        # zł w czystym złocie
+        [{"LOWER":"zł"}, {"LOWER":"w"}, {"POS":"ADJ"}, {"LEMMA":"złoto"}],
+        # zł w półgr starych
+        [{"LOWER":"zł"}, {"LOWER":"w"}, {"LOWER":"półgr"}, {"POS":"ADJ"}],
+        # zł w złocie
+        [{"LOWER":"zł"}, {"LOWER":"w"}, {"LEMMA":"złoto"}],
+        # zł węg.
+        [{"LOWER":"zł"}, {"LOWER":"węg"}, {"IS_PUNCT":True}],
+        # zł. czerwony węg.
+        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"węg"}, {"IS_PUNCT":True}],
+        # zł. lit.
+        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"lit"}, {"IS_PUNCT":True}],
+        # zł. monety śl.
+        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LEMMA":"moneta"}, {"LOWER":"śl"}, {"IS_PUNCT":True}],
+        # zł. pol.
+        [{"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}],
+        # złoty fl.
+        [{"LOWER":"złoty"}, {"LOWER":"fl"}, {"IS_PUNCT":True}],
         # grz. średnich gr krak.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"średnich"}, {"LOWER":"gr"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
         # grz. drobnych pieniędzy
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"drobnych"}, {"LEMMA":'pieniądz'}],
         # kóp gr szer. pras.
+        [{"LOWER":"kóp"}, {"LOWER":"gr"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"pras"}, {"IS_PUNCT":True}],
+        # grz. czystego srebra
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LEMMA":"srebro"}],
+        # grz. wielkich kwartników, # grz. małych kwartników
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LEMMA":"kwartnik"}],
+        # grz. lekkich denarów, # grz. małych denarów
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LEMMA":"denar"}],
+        # grz. średnich gr krak.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"gr"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
+        # grz. małych den.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"den"}, {"IS_PUNCT":True}],
+        # grz. średnich gr
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"gr"}],
+        # grz. gotowych pien.
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"POS":"ADJ"}, {"LOWER":"pien"}, {"IS_PUNCT":True}],
+        # kóp gr pras.
+        [{"LOWER":"kóp"}, {"LOWER":"gr"}, {"LOWER":"pras"}, {"IS_PUNCT":True}],
+        # kóp gr posp.
+        [{"LOWER":"kóp"}, {"LOWER":"gr"}, {"LOWER":"posp"}, {"IS_PUNCT":True}],
+        # grz. w gr praskich
+        [{"LOWER":"grz"}, {"IS_PUNCT":True}, {"LOWER":"w"}, {"LOWER":"gr"}, {"POS":"ADJ"}],
+        # dukat
+        [{"LEMMA":"dukat"}],
+        # dukaty w złocie
+        [{"LEMMA":"dukat"}, {"LOWER":"w"}, {"LEMMA":"złoto"}],
+        # dukatów węg.
+        [{"LEMMA":"dukat"}, {"LOWER":"węg"}, {"IS_PUNCT":True}],
+        # nobel
+        [{"LOWER":"nobel"}],
+        # dukat angielski, złoty dukat angielski
+        [{"LEMMA":"dukat"}, {"POS":"ADJ"}],
+        [{"POS":"ADJ"}, {"LEMMA":"dukat"}, {"LOWER":"angielski"}],
+        # szylingów
+        [{"LOWER":"szyling"}],
+        [{"LEMMA":"szyling"}],
+        # brakteat
+        [{"LOWER":"brakteat"}],
+        # dirhem
+        [{"LOWER":"dirhem"}],
+        # kopach gr szelągów prus.
+        [{"LOWER":"kopach"}, {"LOWER":"gr"}, {"LEMMA":"szeląg"}, {"LOWER":"prus"}, {"IS_PUNCT":True}],
+        # kopy szelągów pruskich
+        [{"LOWER":"kopy"}, {"LOWER":"szelągów"}, {"POS":"ADJ"}]
     ]
     return coin_patterns
+
+
+def false_coins_list() -> list:
+    lista = ['den.Stawka',
+    'den.Zanotowana',
+    'denar czynszowy',
+    'denarem należącym',
+    'denarem sądowym',
+    'den. krownego',
+    'den. myta',
+    'den. oprawnego',
+    'den. panewnego',
+    'den. Paszne',
+    'den. Poddani',
+    'den. Posiadający',
+    'den. skopcowego',
+    'den. wieprzowego',
+    'drugiego zł',
+    'fl. ewentualnym',
+    'fl. należne',
+    'fl. należnych',
+    'fl. pobierana',
+    'fl. pobranych',
+    'fl. pozostałych',
+    'fl. rocznego',
+    'fl. ubezpieczonej',
+    'fl. wiana',
+    'fl. wziętych',
+    'fl. zabezpieczonych',
+    'fl. zapisanej',
+    'fl. zapisanych',
+    'gr Dane',
+    'gr Wspomniana',
+    'gr Następne',
+    'gr achtelowego',
+    'gr całą',
+    'gr ciążący',
+    'gr cieśli',
+    'gr czopowego',
+    'gr darowany',
+    'gr dopłaconej',
+    'gr ewentualnym',
+    'gr gajowego',
+    'gr innych',
+    'gr Jaworskiej',
+    'gr klasztorowi',
+    'gr kolendy',
+    'gr krownego',
+    'gr łącznego',
+    'gr łanowego',
+    'gr legowane',
+    'gr legowanych',
+    'gr leśnego',
+    'gr macierzyzny',
+    'gr magistrowi',
+    'gr mesznego',
+    'gr mieszczaninowi',
+    'gr miodowego',
+    'gr myta',
+    'gr należnej',
+    'gr należnych',
+    'gr należnym',
+    'gr obiednego',
+    'gr oddawana',
+    'gr odziedziczone',
+    'gr oprawnego',
+    'gr ostatniej',
+    'gr otrzymanych',
+    'gr pamiętnego',
+    'gr pierwszej',
+    'gr płacone',
+    'gr płatny',
+    'gr pobranych',
+    'gr podwójnego',
+    'gr podymnego',
+    'gr polnego',
+    'gr poradlnego',
+    'gr posiadanych',
+    'gr posłańcowi',
+    'gr powszechnych',
+    'gr pozostałej',
+    'gr pozostawionych',
+    'gr pozwany',
+    'gr pożyczoną',
+    'gr pożyczone',
+    'gr pożyczonego',
+    'gr pożyczonych',
+    'gr przypadającą',
+    'gr przysięgłym',
+    'gr rocznego',
+    'gr rogowego',
+    'gr rzeczonym',
+    'gr sądowego',
+    'gr scholastykowi',
+    'gr siekiernego',
+    'gr składających',
+    'gr spisnego',
+    'gr spłacanej',
+    'gr starszym',
+    'gr stołowego',
+    'gr świętop',
+    'gr targowego',
+    'gr ufundowany',
+    'gr ustanowiona',
+    'gr ustanowiony',
+    'gr wart',
+    'gr wiana',
+    'gr wiardunkowego',
+    'gr wicnego',
+    'gr wiecnego',
+    'gr wiecnegoWiecne',
+    'gr wiecznego',
+    'gr wieprzowego',
+    'gr wilczego',
+    'gr własnych',
+    'gr wojennego',
+    'gr wpisowego',
+    'gr wstanego',
+    'gr wysłużonej',
+    'gr koźlęcego',
+    'gr stróżnego',
+    'dukatów zasądzonych',
+    'grz. →',
+    'grz:',
+    'grz.W',
+    'gr zabezpieczonych',
+    'gr zabranych',
+    'gr zaległego',
+    'gr zaległej',
+    'grz. altarii',
+    'gr zapisaną',
+    'gr zapisane',
+    'gr zapisanej',
+    'gr zapisany',
+    'gr zapisanych',
+    'gr zapłacone',
+    'grz. bakałarzowi',
+    'grz. będący',
+    'grz. brakujących',
+    'grz. bratowej',
+    'grz. burgrabiemu',
+    'grz. całą',
+    'grz. cale',
+    'grz. całe',
+    'grz. całego',
+    'grz. całej',
+    'grz. cały',
+    'grz. całymi',
+    'grz. chorążemu',
+    'grz. Chronowskiemu',
+    'grz. ciążącego',
+    'grz. ciążącej',
+    'grz. ciążący',
+    'grz. ciążących',
+    'grz. ciążącym',
+    'grz.Cieplucha',
+    'grz. czcigodnemu',
+    'grz. czopowego',
+    'grz. czwartą',
+    'grz. czynszu',
+    'grz. Czystego',
+    'grz. dalszą ',
+    'grz. daną',
+    'grz. danego',
+    'grz. danej',
+    'grz. darowanej',
+    'grz. darowanych',
+    'grz. dawanej',
+    'gr zdeponowaną',
+    'grz. dobra',
+    'grz. dobrego',
+    'grz. dodanych',
+    'grz. dokonane',
+    'grz. dokonanego',
+    'grz. dokonany',
+    'grz. Dokowo',
+    'grz. dopisanych',
+    'grz. Dorocie',
+    'grz. dostarczanych',
+    'grz. dożywotniego',
+    'grz. dożywotniej',
+    'grz. Drugą',
+    'grz. drugiej',
+    'grz. DwMat',
+    'grz.DwMat',
+    'grz. dziedzicznych',
+    'grz. dzierżone',
+    'grz. Ewentualne',
+    'grz. ewentualnym',
+    'grz. expedicionis',
+    'grz. głównego',
+    'grz. głównej',
+    'grz. głowszczyzny',
+    'grz. główszczyzny',
+    'grz. Gniewomirowi',
+    'grz. górną',
+    'grz. Gotardowi',
+    'grz.grody',
+    'grz. Grotowi',
+    'grz. gumna',
+    'grz. gwarantowanych',
+    'grz. inną',
+    'grz. Inne',
+    'grz. innej',
+    'grz. Inny',
+    'grz. innym',
+    'grz. intromisją',
+    'grz. intromisję',
+    'grz. Iwanka',
+    'grz. Iwonowi',
+    'grz. Jachnie',
+    'grz. jedna',
+    'grz. jednego',
+    'grz.Jeszcze',
+    'grz.Już',
+    'grz. karczmarzowi',
+    'grz. kaszt',
+    'grz. klaszt',
+    'grz. kmieciowi',
+    'grz. Kolejną',
+    'grz. Kolejne',
+    'grz.Kolejne',
+    'grz. komesowi',
+    'grz. Konarskie',
+    'grz. krownego',
+    'grz. kupioną',
+    'grz. kupionego',
+    'grz. kupionej',
+    'grz. kupiony',
+    'grz. kuźnikowi',
+    'grz. Łączny',
+    'grz. legowanych',
+    'grz. liczoną',
+    'grz. Literalna',
+    'grz. Łysą',
+    'grz. macierzystych',
+    'grz, macierzyzny',
+    'grz. macosze',
+    'grz. magistrowi',
+    'grz. małych',
+    'grz. martwej',
+    'grz. Meszne',
+    'grz. mesznego',
+    'grz. mgrowi',
+    'grz. miejscowemu',
+    'grz. mieszczaninowi',
+    'grz. Mleczny',
+    'grz. młodszemu',
+    'grz. Młodszym',
+    'grz. Moretowską',
+    'grz. mostowego',
+    'grz.Może',
+    'grz. Możliwe',
+    'grz.Na',
+    'grz. nabyty',
+    'grz. nabytym',
+    'grz. najbliższym',
+    'grz. najstarszemu',
+    'grz. należąca',
+    'grz. należące',
+    'grz. należący',
+    'grz. należących',
+    'grz. należącymi',
+    'grz. należna',
+    'grz. należną',
+    'grz. należne',
+    'grz. należnego',
+    'grz. należnej',
+    'grz. należny',
+    'grz. należnych',
+    'grz. nałożoną',
+    'grz. narzecz',
+    'grz.Nie',
+    'grz. niejakiemu',
+    'grz. Niemierzy',
+    'grz. niezapłaconej',
+    'grz. Niklos',
+    'grz. nowemu',
+    'grz. Nowy',
+    'grz. obiecanych',
+    'grz. Obiedne',
+    'grz. obiednego',
+    'grz. oddawana',
+    'grz. odesłana',
+    'grz. odprowadzonej',
+    'grz. odstępnego',
+    'grz. odziedziczonych',
+    'grz. ofiarowanych',
+    'grz. ojcowizny',
+    'grz. ojczymowi',
+    'grz. opatrznemu',
+    'grz. opatrznym',
+    'grz. opatrzonej',
+    'grz. opisanych',
+    'grz. Opisywane',
+    'grz. oprawione',
+    'grz. oprawionej',
+    'grz. ostatniej',
+    'grz. oszacowanego',
+    'grz. otrzymaną',
+    'grz. otrzymane',
+    'grz. otrzymanych',
+    'grz. pierwszej',
+    'grz. płacona',
+    'grz. płacone',
+    'grz. płacony',
+    'grz. płaconych',
+    'grz. płatną',
+    'grz. płatne',
+    'grz. płatny',
+    'grz. płatnych',
+    'grz. płatnych',
+    'grz. plebańskie',
+    'grz. pobierany',
+    'grz. pobrane',
+    'grz. pobranych',
+    'grz. pochodzących',
+    'grz. podczaszemu',
+    'grz. podkanclerzemu',
+    'grz. Podobną',
+    'grz. podrzędczemu',
+    'grz. podwójnego',
+    'grz. półgr całą',
+    'grz. półgr całe',
+    'grz. półgr cały',
+    'grz. półgr ewentualnym',
+    'grz. półgr należących',
+    'grz. półgr Pełce',
+    'grz. półgr podżupczemu',
+    'grz. półgr pożyczonej',
+    'grz. półgr pożyczonych',
+    'grz. półgr pozyskanych',
+    'grz. półgr Prandocie',
+    'grz. półgr samemu',
+    'grz. półgr stanowiących',
+    'grz. półgr wiana',
+    'grz. półgr zapisaną',
+    'grz. półgr zapisanych',
+    'grz. półł',
+    'grz. położoną',
+    'grz. poręczone',
+    'grz. poręczonego',
+    'grz. poręczonych',
+    'grz. poręczonym',
+    'grz. posagowych',
+    'grz. posiadane',
+    'grz. posiadany',
+    'grz. posiadanych',
+    'grz. posiędzie',
+    'grz. powierzonych',
+    'grz. Pozostałą',
+    'grz. Pozostałe',
+    'grz. pozostałego',
+    'grz. pozostałych',
+    'grz. pozostałym',
+    'grz. pozostawionych',
+    'grz. Pozwana',
+    'grz. pozwana',
+    'grz. pozwany',
+    'grz. Pozwany',
+    'grz. pożyczoną',
+    'grz. pożyczone',
+    'grz. pożyczonej',
+    'grz. pożyczonych',
+    'grz. pozyskane',
+    'grz. pozyskanego',
+    'grz. pozyskany',
+    'grz. pozyskanych',
+    'grz. pracowitego',
+    'grz. pracowitemu',
+    'grz. preb',
+    'grz. prebendarzowi',
+    'grz. przejętą',
+    'grz. przejętych',
+    'grz. przeniesiony',
+    'grz. przeznaczona',
+    'grz. przeznaczoną',
+    'grz. przeznaczonego',
+    'grz. przeznaczonej',
+    'grz. przeznaczony',
+    'grz. przeznaczonych',
+    'grz. przeznaczonym',
+    'grz. przezornemu',
+    'grz. przypadającą',
+    'grz. przypadające',
+    'grz. przypadających',
+    'grz. przypadłą',
+    'grz. przysądzoną',
+    'grz. przysługującej',
+    'grz. przysługujących',
+    'grz. pstar',
+    'grz. racione',
+    'grz. robotnego',
+    'grz. rocznego',
+    'grz. rocznej',
+    'grz. roczny',
+    'grz. rocznych',
+    'grz. równego',
+    'grz. roztropnemu',
+    'grz. Skazani',
+    'grz. skazany',
+    'grz. sławetnemu',
+    'grz. spłacanych',
+    'grz. spłaconego',
+    'grz. spłaconych',
+    'grz. spowodowane',
+    'grz. sprawdzony',
+    'grz. sprzedany',
+    'grz. stanowiące',
+    'grz. stanowiącej',
+    'grz. stanowiących',
+    'grz. starego',
+    'grz. stołowego',
+    'grz. submissionis',
+    'grz. Sułkowi',
+    'grz. swemu',
+    'grz. synowej',
+    'grz. Szalowskiemu',
+    'grz. Szczęsnemu',
+    'grz. szer. gr należnego',
+    'grz. szer. gr pobranych',
+    'grz. szer. gr podjętych',
+    'grz. szer. gr pożyczonych',
+    'grz. szer. gr Samborowi',
+    'grz. szer. gr wiana',
+    'grz. szer. gr zapisaną',
+    'grz. szer. gr zapisanej',
+    'grz. szer. gr zapisany',
+    'grz. szer. gr zapisanych',
+    'grz.Taki',
+    'grz. targowego',
+    'grz. tegoroczną',
+    'grz. temuż',
+    'grz. tenutę',
+    'grz. Tenże',
+    'grz. tenże',
+    'grz. trzecią',
+    'grz. trzeciego',
+    'grz. trzeciej',
+    'grz. trzymaną',
+    'grz. Tytułem',
+    'grz. uchwalonego',
+    'grz. udzielonej',
+    'grz. ufundowany',
+    'grz. ulokowany',
+    'grz. ustąpionych',
+    'grz. utracone',
+    'grz. uzyskane',
+    'grz. uzyskanych',
+    'grz. uzyskiwanych',
+    'grz. W',
+    'grz.W',
+    'grz. Walentemu',
+    'grz. Wart',
+    'grz. wcześniejszego',
+    'grz. wiana',
+    'grz. wicekustoszowi',
+    'grz. wiceprepozytowi',
+    'grz. wieczystego',
+    'grz. wielebnemu',
+    'grz. Wiemkowi',
+    'grz. Wiernka',
+    'grz. Wierzbięta',
+    'grz. wikaremu',
+    'grz. wikariuszowi',
+    'grz. Wincentemu',
+    'grz. Winien',
+    'grz. Winna',
+    'grz. włodarzowi',
+    'grz.Włościejewscy',
+    'grz. wniesione',
+    'grz. wniesiony',
+    'grz. wniesionych',
+    'grz. woienczizny',
+    'grz. Wolnizna',
+    'grz. wolny',
+    'grz. woźnemu',
+    'grz. wpisana',
+    'grz. Wrochowi',
+    'grz. wspomnianą',
+    'grz. wspomnianym',
+    'grz. wwiąże',
+    'grz. wyasygnowanych',
+    'grz. wydanych',
+    'grz. wykupioną',
+    'grz. wykupiony',
+    'grz. wykupnego',
+    'grz. Wymienieni',
+    'grz. wymienione',
+    'grz. wymienione',
+    'grz. Wymieniony',
+    'grz. wypłacane',
+    'grz. wyrządzone',
+    'grz. wyrządzonych',
+    'grz. wystawiony',
+    'grz. wyznaczonego',
+    'grz. wyznaczonych',
+    'grz. wzięte',
+    'grz. wziętych',
+    'grz. zabezpieczona',
+    'grz. zabezpieczoną',
+    'grz. zabezpieczonego',
+    'grz. zabezpieczonej',
+    'grz. zabezpieczony',
+    'grz. zabezpieczonych',
+    'grz. zabraną',
+    'grz. zabrane',
+    'grz. zabranego',
+    'grz. zabranych',
+    'grz. zabranych',
+    'grz. zaciągniętego',
+    'grz. zaciągniętej',
+    'grz. zagarnięte',
+    'grz. Zagórskiemu',
+    'grz. zajętych',
+    'grz. zakupioną',
+    'grz. zakupione',
+    'grz. zakupiony',
+    'grz. zakupionych',
+    'grz. zaległego',
+    'grz. zaległych',
+    'grz. założonym',
+    'grz. zapisana',
+    'grz. zapisaną',
+    'grz. zapisane',
+    'grz. zapisanego',
+    'grz. zapisanej',
+    'grz. zapisany',
+    'grz. zapisanych',
+    'grz. zapisanym',
+    'grz. zapisanymi',
+    'grz. zapłacony',
+    'grz. zapłaconych',
+    'grz. zastawioną',
+    'grz. zastawione',
+    'grz. zastrzeżone',
+    'grz. zatrzymanego',
+    'grz. zdeponowane',
+    'grz. zebranego',
+    'grz. zgłoszone',
+    'grz. zgromadzonych',
+    'grz. złowione',
+    'grz. złożoną',
+    'grz. złożone',
+    'grz. złożonej',
+    'grz. złożonych',
+    'grz. zobowiązani',
+    'grz. zobowiązany',
+    'grz. zrabowane',
+    'grz. źreb',
+    'grz. żupnika',
+    'grz. zwłoki',
+    'grz. zwrócona',
+    'grz. zwyczajowego',
+    'kopie',
+    'rz. półgr wiana',
+    'rz. poręczonej',
+    'sz)',
+    'zł całą',
+    'zł całe',
+    'zł chorążemu',
+    'zł czopowego',
+    'zł daną',
+    'zł jednego',
+    'zł macierzyzny',
+    'zł miejscowa',
+    'zł należnej',
+    'zł obejmujący',
+    'zł obiednego',
+    'zł opatrzenemu',
+    'zł płatną',
+    'zł płatne',
+    'zł poddanemu',
+    'zł podwójnego',
+    'zł podymnego',
+    'zł posiadany',
+    'zł pozostali',
+    'zł pozostałym',
+    'zł pożyczonych',
+    'zł rocznego',
+    'zł rocznej',
+    'zł stanowiącej',
+    'zł świętomarskiego',
+    'zł swym',
+    'zł targowego',
+    'zł wiana',
+    'zł wojennego',
+    'zł wymienioną',
+    'zł wymienionych',
+    'zł zabezpieczonych',
+    'zł zaciągniętą',
+    'zł zajęte',
+    'zł zaległego',
+    'zł zapisana',
+    'zł zapisaną',
+    'zł zapisane',
+    'zł zapisanego',
+    'zł zapisanej',
+    'zł zapisany',
+    'zł zapisanych',
+    'zł złożone',
+    'zł znajdującej',
+    'zł zwyczajowej',
+    'grz. zwłokiMatka',
+    'grz. zasądzonych',
+    'grz. poręczonej',
+    'grz. macierzyzny',
+    'grz. expeditionis',
+    'grz. czynszuPołożony',
+    'grz. dalszą',
+    'fl. zapisane',
+    'grz tenże',
+    'grz.Ogrody',
+    'zł roczny'
+]
+
+    return lista

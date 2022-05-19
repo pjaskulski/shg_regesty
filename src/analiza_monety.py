@@ -5,7 +5,7 @@ from pathlib import Path
 import spacy
 import openpyxl
 from spacy.matcher import Matcher
-from monety import rule_patterns
+from monety import false_coins_list, rule_patterns
 
 
 slowniki = {1: 'Benedyktyni',
@@ -37,6 +37,7 @@ def clear_text(text: str) -> str:
 
 if __name__ == "__main__":
     patterns = rule_patterns()
+    false_coins = false_coins_list()
 
     nlp = spacy.load("pl_core_news_lg")
     matcher = Matcher(nlp.vocab)
@@ -104,10 +105,14 @@ if __name__ == "__main__":
             # tylko nie zawierające się znaleziska
             spans = [doc[start:end] for _, start, end in matches]
             for span in spacy.util.filter_spans(spans):
-                lista.append(span.text)
+                moneta = span.text
+                moneta = re.sub(r'\d', '', moneta)
+                moneta = moneta.replace('/','').replace('½', '').replace(';','').strip()
+                moneta = moneta.replace('–','').replace(':', '')
+                if moneta not in false_coins:
+                    lista.append(moneta)
 
         with open(output_path, "w", encoding='utf-8') as f:
             lista = list(set(lista))
             for item in sorted(lista):
                 f.write(f'{item}\n')
-
