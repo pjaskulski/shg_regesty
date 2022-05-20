@@ -20,7 +20,8 @@ Opat Józef nabył konia za 2 grz. monety obiegowej od kupca Likiera. Od tegoż 
 nabył także za 2 grz. w groszach wóz siana dobrego. Z miasta Biała podatku 
 3 kopy monety obiegowej i kopę kwartników. Abacy winien jest kupcom z Orawy 4 solidy za rzemienie,
 kopę monety krak. za drewno, oraz grz. w monecie krakowskiej za dzierżawę wozów. 
-Za przejazd mostem """
+Za przejazd mostem na rzeczce Widawie 2 den. chełm. Kmieć wolny Jakub z Brzmiącej
+za dzierżawę pola zapłacił wiard. chełm. monety."""
 
     doc = nlp(tekst)
     matches = matcher(doc)
