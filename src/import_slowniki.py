@@ -10,7 +10,7 @@ if __name__ == '__main__':
     # 2 - Chełmno
     # 3 - Kraków
     # 4 - Lublin
-    # 5 - Lublin zaginione  
+    # 5 - Lublin zaginione
     # 6 - Płock
     # 7 - Poznań
     # 8 - Sanok
@@ -19,8 +19,10 @@ if __name__ == '__main__':
     # 11 - Warszawa
     # 12 - Liw
     #dict_numb = 12
-    output_path = Path('.').parent / 'output/wyniki/'
+
     #ext_slownik(file_name, dict_numb, output_path)
 
     for i in range(1, 13):
-        ext_punkty(i, output_path)
+        output_path = Path('.').parent / f'output/hasla_{i}_pkt.csv'
+        hasla_path = Path('.').parent / f"output/data{i}hasla.csv"
+        ext_punkty(output_path, hasla_path)

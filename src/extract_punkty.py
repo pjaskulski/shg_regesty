@@ -33,7 +33,6 @@ def remove_span_from_broken_html(text:str) -> str:
     find_tag = True
     while find_tag:
         pos1 = text.find(start)
-        print(pos1)
         if pos1 == -1:
             find_tag = False
         else:
@@ -46,11 +45,9 @@ def remove_span_from_broken_html(text:str) -> str:
     return text
 
 
-def ext_punkty(nr_slownika, output_path):
+def ext_punkty(output_path, hasla_path):
     ############################### DANE ##########################################
-    hasla_name = "data"+str(nr_slownika)+"hasla.csv"
-    hasla = Path(output_path, hasla_name)
-    data = pd.read_csv(hasla, sep=",")
+    data = pd.read_csv(hasla_path, sep=",")
     #sprawdzenie wczytanych nazw kolumn
     data.columns
 
@@ -82,7 +79,7 @@ def ext_punkty(nr_slownika, output_path):
             punkty = [clear_html(x.group()) for x in re.finditer('('+test_start+'|'+test_start1+'|'+test_start2+')', temporal)]
             licznik = 0
             p_value = {}
-            
+
             p_value['0'] = x[0]
 
             for p in punkty:
@@ -99,9 +96,13 @@ def ext_punkty(nr_slownika, output_path):
                     temp[nr] = temp[nr] + ';' + value
                 else:
                     temp[nr] = value
+        else:
+            temp[0] = temporal
 
         listoflists[j]=temp
 
-    hasla_df = pd.DataFrame(listoflists)    
+    hasla_df = pd.DataFrame(listoflists)
     data_pkt = pd.concat([data, hasla_df], axis=1)
-    data_pkt.to_excel(Path(output_path,f"hasla_{nr_slownika}_pkt.xlsx"))
+    #data_pkt.to_excel(Path(output_path,f"hasla_{nr_slownika}_pkt.xlsx"))
+    data_pkt.to_csv(output_path, sep="#", index_label="id")
+
