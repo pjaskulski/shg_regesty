@@ -142,6 +142,8 @@ def rule_patterns() -> list:
         [{"LEMMA":"kopa"}, {"LOWER":"zł"}, {"IS_PUNCT":True}, {"LOWER":"pol"}, {"IS_PUNCT":True}],
         # kopy w szer. gr czes.
         [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"},{"IS_PUNCT":True}],
+        # kopy w szer. gr czes.
+        [{"LOWER":"kopy"}, {"LOWER":"w"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"LOWER":"czes"},{"IS_PUNCT":True}],
         # kopy w szer. gr czeskich
         [{"LEMMA":"kopa"}, {"LOWER":"w"}, {"LOWER":"szer"}, {"IS_PUNCT":True}, {"LOWER":"gr"}, {"POS":"ADJ"}],
         # kwartnik
@@ -259,7 +261,9 @@ def rule_patterns() -> list:
         # kopach gr szelągów prus.
         [{"LOWER":"kopach"}, {"LOWER":"gr"}, {"LEMMA":"szeląg"}, {"LOWER":"prus"}, {"IS_PUNCT":True}],
         # kopy szelągów pruskich
-        [{"LOWER":"kopy"}, {"LOWER":"szelągów"}, {"POS":"ADJ"}]
+        [{"LOWER":"kopy"}, {"LOWER":"szelągów"}, {"POS":"ADJ"}],
+        # pieniędzy złotych i srebrnych
+        [{"LEMMA":"pieniądz"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
     ]
     return coin_patterns
 
