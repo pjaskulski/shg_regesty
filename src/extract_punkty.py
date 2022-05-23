@@ -57,7 +57,7 @@ def ext_punkty(output_path, hasla_path):
     listoflists = [None]*len(body)
 
     for j, item in enumerate(body):
-        temp = [None]*10
+        temp = [None]*11
         temporal = item
 
         # usuwam page number
