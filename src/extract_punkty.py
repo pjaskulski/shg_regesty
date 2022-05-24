@@ -66,31 +66,42 @@ def ext_punkty(output_path, hasla_path):
         else:
             listoflists[j] = list()
             continue
-        
-        # if '1269 sluph, 1351 Slup ciuitas' in temporal:
+
+        # if '1206 Cirnicov, 1208 Chirnicov, 1212 Cyrnichou' in temporal:
         #     print()
 
         test_start = "</p>\\\\n<p><b>[1-8]{1}[ABCDEFabcdef]{0,1}\.[234]{0,1}\.?</b>"
         test_start1 = '</p>\\\\n<p><b>Uw\.</b>'
         test_start2 = '</p>\\\\n<p><b>Uwaga:</b>'
+        test_start3 = '</p>\\\\n<p><b>-[abcde]{0,1}\.</b>'
+        test_start4 = '<b>-[a]{0,1}\.</b>'
 
         if re.search(test_start, temporal):
-            x = re.split(test_start+'|'+test_start1+'|'+test_start2, temporal) 
-            punkty = [clear_html(x.group()) for x in re.finditer('('+test_start+'|'+test_start1+'|'+test_start2+')', temporal)]
+            pattern = test_start + '|' + test_start1 + '|' + test_start2 + '|' + test_start3 + '|' + test_start4
+            parts = re.split(pattern, temporal)
+            punkty = [clear_html(point_symbol.group()) for point_symbol in re.finditer('(' + pattern + ')', temporal)]
             licznik = 0
             p_value = {}
 
-            p_value['0'] = x[0]
+            p_value['0'] = parts[0]
 
             for p in punkty:
                 licznik += 1
-                p_value[p] = x[licznik]
+                p_value[p] = parts[licznik]
 
+            prev_nr = 0
             for key, value in p_value.items():
                 if key[0].isnumeric():
                     nr = int(key[0])
+                    if len(key) > 1 and key[1] != '.':
+                        value = '{' + key + '}' + value
                 elif key[0].lower() == 'u':
                     nr = 9
+                elif key in ['-a.', '-b.', '-c.', '-d.', '-e.', '-f.']:
+                    nr = prev_nr
+                    value = '{' + key + '}' + value
+
+                prev_nr = nr
 
                 if temp[nr]:
                     temp[nr] = temp[nr] + ';' + value
