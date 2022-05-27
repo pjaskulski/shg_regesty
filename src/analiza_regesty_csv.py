@@ -108,9 +108,10 @@ def process_archeo(sheet, m_id, m_nazwa, point_num, point_text):
         sheet.append(archeo)
 
 
-def process_header(sheet, m_id, m_nazwa, point_num, point_text):
+def process_header(sheet, m_id, m_nazwa, point_num, point_text) -> int:
     """ przetwarzanie punktu 0 (nagłówek, obecnie tylko podział na akapity) """
     global regesty_count
+    regest_num = 0
     reg_list = re.split('<p>', point_text)
     reg_list = [remove_html(reg) for reg in reg_list]
     for item in reg_list:
@@ -122,13 +123,16 @@ def process_header(sheet, m_id, m_nazwa, point_num, point_text):
                 for reg_item in reg_list:
                     regest = tuple([m_id, m_nazwa, point_num, reg_item.strip()])
                     sheet.append(regest)
-                    regesty_count[point_num] += 1
+                    # wyłączenie sumowania dla p. 0 regesty_count[point_num] += 1
+                    # regest_num += 1
         else:
             akapit = tuple([m_id, m_nazwa, point_num, item.strip()])
             sheet.append(akapit)
 
+    return regest_num
 
-def process_point(sheet, m_id, m_nazwa, point_num, point_text):
+
+def process_point(sheet, m_id, m_nazwa, point_num, point_text) ->int:
     """przetwarzanie treści punktu z zapisem do wskazanego arkusza
        sheet - wskazanie na arkusz
        m_id - identyfikator miejscowości
@@ -137,6 +141,7 @@ def process_point(sheet, m_id, m_nazwa, point_num, point_text):
        point_text - treść punktu
     """
     global regesty_count
+    global regesty_slownik_count
     global place_owner
 
     reg_list = []
@@ -218,10 +223,14 @@ def process_point(sheet, m_id, m_nazwa, point_num, point_text):
         regesty_count[point_num] += 1
         regest_num += 1
 
+    return regest_num
+
 
 # -------------- Główny program ------------------------------------------------
 if __name__ == '__main__':
     regesty_count = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
+
+    regesty_slownik_count = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0}
 
     for nr in range(1, 13):
         print(f"Słownik: {slowniki[nr]} ({nr})")
@@ -323,11 +332,12 @@ if __name__ == '__main__':
                 #    process_header(regest_sheet_0, miejsce_id, nazwa, 0, p0)
 
                 if p0:
-                   process_header(regest_sheet_0, miejsce_id, nazwa, 0, p0)
-
+                    liczba = process_header(regest_sheet_0, miejsce_id, nazwa, 0, p0)
+                    #regesty_slownik_count[nr] += liczba
                 # Punkt 1 bez podpunktów
                 if p1:
-                    process_point(regest_sheet_1, miejsce_id, nazwa, 1, p1)
+                    liczba = process_point(regest_sheet_1, miejsce_id, nazwa, 1, p1)
+                    regesty_slownik_count[nr] += liczba
                 # Punkt 2 i dalsze z możliwymi podpunktami
                 if p2:
                     pattern = r'{.*?}'
@@ -343,21 +353,29 @@ if __name__ == '__main__':
                         for key, value in p_part.items():
                             key = key.replace('.','').replace('-','').lower()
                             if key == '2':
-                                process_point(regest_sheet_2, miejsce_id, nazwa, 2, value)
+                                liczba = process_point(regest_sheet_2, miejsce_id, nazwa, 2, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'a' in key:
-                                process_point(regest_sheet_2a, miejsce_id, nazwa, 2, value)
+                                liczba = process_point(regest_sheet_2a, miejsce_id, nazwa, 2, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'b' in key:
-                                process_point(regest_sheet_2b, miejsce_id, nazwa, 2, value)
+                                liczba = process_point(regest_sheet_2b, miejsce_id, nazwa, 2, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'c' in key:
-                                process_point(regest_sheet_2c, miejsce_id, nazwa, 2, value)
+                                liczba = process_point(regest_sheet_2c, miejsce_id, nazwa, 2, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'd' in key:
-                                process_point(regest_sheet_2d, miejsce_id, nazwa, 2, value)
+                                liczba = process_point(regest_sheet_2d, miejsce_id, nazwa, 2, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'e' in key:
-                                process_point(regest_sheet_2e, miejsce_id, nazwa, 2, value)
+                                liczba = process_point(regest_sheet_2e, miejsce_id, nazwa, 2, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'f' in key:
-                                process_point(regest_sheet_2f, miejsce_id, nazwa, 2, value)
+                                liczba = process_point(regest_sheet_2f, miejsce_id, nazwa, 2, value)
+                                regesty_slownik_count[nr] += liczba
                     else:
-                        process_point(regest_sheet_2, miejsce_id, nazwa, 2, p2)
+                        liczba = process_point(regest_sheet_2, miejsce_id, nazwa, 2, p2)
+                        regesty_slownik_count[nr] += liczba
                 if p3:
                     pattern = r'{.*?}'
                     if re.search(pattern, p3):
@@ -372,21 +390,29 @@ if __name__ == '__main__':
                         for key, value in p_part.items():
                             key = key.replace('.','').replace('-','').lower()
                             if key == '3':
-                                process_point(regest_sheet_3, miejsce_id, nazwa, 3, value)
+                                liczba = process_point(regest_sheet_3, miejsce_id, nazwa, 3, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'a' in key:
-                                process_point(regest_sheet_3a, miejsce_id, nazwa, 3, value)
+                                liczba = process_point(regest_sheet_3a, miejsce_id, nazwa, 3, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'b' in key:
-                                process_point(regest_sheet_3b, miejsce_id, nazwa, 3, value)
+                                liczba = process_point(regest_sheet_3b, miejsce_id, nazwa, 3, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'c' in key:
-                                process_point(regest_sheet_3c, miejsce_id, nazwa, 3, value)
+                                liczba = process_point(regest_sheet_3c, miejsce_id, nazwa, 3, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'd' in key:
-                                process_point(regest_sheet_3d, miejsce_id, nazwa, 3, value)
+                                liczba = process_point(regest_sheet_3d, miejsce_id, nazwa, 3, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'e' in key:
-                                process_point(regest_sheet_3e, miejsce_id, nazwa, 3, value)
+                                liczba = process_point(regest_sheet_3e, miejsce_id, nazwa, 3, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'f' in key:
-                                process_point(regest_sheet_3f, miejsce_id, nazwa, 3, value)
+                                liczba = process_point(regest_sheet_3f, miejsce_id, nazwa, 3, value)
+                                regesty_slownik_count[nr] += liczba
                     else:
-                        process_point(regest_sheet_3, miejsce_id, nazwa, 3, p3)
+                        liczba = process_point(regest_sheet_3, miejsce_id, nazwa, 3, p3)
+                        regesty_slownik_count[nr] += liczba
                 if p4:
                     pattern = r'{.*?}'
                     if re.search(pattern, p4):
@@ -401,21 +427,29 @@ if __name__ == '__main__':
                         for key, value in p_part.items():
                             key = key.replace('.','').replace('-','').lower()
                             if key == '4':
-                                process_point(regest_sheet_4, miejsce_id, nazwa, 4, value)
+                                liczba = process_point(regest_sheet_4, miejsce_id, nazwa, 4, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'a' in key:
-                                process_point(regest_sheet_4a, miejsce_id, nazwa, 4, value)
+                                liczba = process_point(regest_sheet_4a, miejsce_id, nazwa, 4, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'b' in key:
-                                process_point(regest_sheet_4b, miejsce_id, nazwa, 4, value)
+                                liczba = process_point(regest_sheet_4b, miejsce_id, nazwa, 4, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'c' in key:
-                                process_point(regest_sheet_4c, miejsce_id, nazwa, 4, value)
+                                liczba = process_point(regest_sheet_4c, miejsce_id, nazwa, 4, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'd' in key:
-                                process_point(regest_sheet_4d, miejsce_id, nazwa, 4, value)
+                                liczba = process_point(regest_sheet_4d, miejsce_id, nazwa, 4, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'e' in key:
-                                process_point(regest_sheet_4e, miejsce_id, nazwa, 4, value)
+                                liczba = process_point(regest_sheet_4e, miejsce_id, nazwa, 4, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'f' in key:
-                                process_point(regest_sheet_4f, miejsce_id, nazwa, 4, value)
+                                liczba = process_point(regest_sheet_4f, miejsce_id, nazwa, 4, value)
+                                regesty_slownik_count[nr] += liczba
                     else:
-                        process_point(regest_sheet_4, miejsce_id, nazwa, 4, p4)
+                        liczba = process_point(regest_sheet_4, miejsce_id, nazwa, 4, p4)
+                        regesty_slownik_count[nr] += liczba
                 if p5:
                     pattern = r'{.*?}'
                     if re.search(pattern, p5):
@@ -430,21 +464,29 @@ if __name__ == '__main__':
                         for key, value in p_part.items():
                             key = key.replace('.','').replace('-','').lower()
                             if key == '5':
-                                process_point(regest_sheet_5, miejsce_id, nazwa, 5, value)
+                                liczba = process_point(regest_sheet_5, miejsce_id, nazwa, 5, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'a' in key:
-                                process_point(regest_sheet_5a, miejsce_id, nazwa, 5, value)
+                                liczba = process_point(regest_sheet_5a, miejsce_id, nazwa, 5, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'b' in key:
-                                process_point(regest_sheet_5b, miejsce_id, nazwa, 5, value)
+                                liczba = process_point(regest_sheet_5b, miejsce_id, nazwa, 5, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'c' in key:
-                                process_point(regest_sheet_5c, miejsce_id, nazwa, 5, value)
+                                liczba = process_point(regest_sheet_5c, miejsce_id, nazwa, 5, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'd' in key:
-                                process_point(regest_sheet_5d, miejsce_id, nazwa, 5, value)
+                                liczba = process_point(regest_sheet_5d, miejsce_id, nazwa, 5, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'e' in key:
-                                process_point(regest_sheet_5e, miejsce_id, nazwa, 5, value)
+                                liczba = process_point(regest_sheet_5e, miejsce_id, nazwa, 5, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'f' in key:
-                                process_point(regest_sheet_5f, miejsce_id, nazwa, 5, value)
+                                liczba = process_point(regest_sheet_5f, miejsce_id, nazwa, 5, value)
+                                regesty_slownik_count[nr] += liczba
                     else:
-                        process_point(regest_sheet_5, miejsce_id, nazwa, 5, p5)
+                        liczba = process_point(regest_sheet_5, miejsce_id, nazwa, 5, p5)
+                        regesty_slownik_count[nr] += liczba
                 if p6:
                     pattern = r'{.*?}'
                     if re.search(pattern, p6):
@@ -459,21 +501,29 @@ if __name__ == '__main__':
                         for key, value in p_part.items():
                             key = key.replace('.','').replace('-','').lower()
                             if key == '6':
-                                process_point(regest_sheet_6, miejsce_id, nazwa, 6, value)
+                                liczba = process_point(regest_sheet_6, miejsce_id, nazwa, 6, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'a' in key:
-                                process_point(regest_sheet_6a, miejsce_id, nazwa, 6, value)
+                                liczba = process_point(regest_sheet_6a, miejsce_id, nazwa, 6, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'b' in key:
-                                process_point(regest_sheet_6b, miejsce_id, nazwa, 6, value)
+                                liczba = process_point(regest_sheet_6b, miejsce_id, nazwa, 6, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'c' in key:
-                                process_point(regest_sheet_6c, miejsce_id, nazwa, 6, value)
+                                liczba = process_point(regest_sheet_6c, miejsce_id, nazwa, 6, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'd' in key:
-                                process_point(regest_sheet_6d, miejsce_id, nazwa, 6, value)
+                                liczba = process_point(regest_sheet_6d, miejsce_id, nazwa, 6, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'e' in key:
-                                process_point(regest_sheet_6e, miejsce_id, nazwa, 6, value)
+                                liczba = process_point(regest_sheet_6e, miejsce_id, nazwa, 6, value)
+                                regesty_slownik_count[nr] += liczba
                             elif 'f' in key:
-                                process_point(regest_sheet_6f, miejsce_id, nazwa, 6, value)
+                                liczba = process_point(regest_sheet_6f, miejsce_id, nazwa, 6, value)
+                                regesty_slownik_count[nr] += liczba
                     else:
-                        process_point(regest_sheet_6, miejsce_id, nazwa, 6, p6)
+                        liczba = process_point(regest_sheet_6, miejsce_id, nazwa, 6, p6)
+                        regesty_slownik_count[nr] += liczba
                 # literatura
                 if p7:
                     process_biblio(regest_sheet_7, miejsce_id, nazwa, 7, p7)
@@ -595,4 +645,10 @@ if __name__ == '__main__':
     for i in range(1, 7):
         print(f"p.{i}", regesty_count[i])
         suma += regesty_count[i]
+    print(f"razem: {suma}")
+    print()
+    suma = 0
+    for nr in range(1, 13):
+        print(f"Słownik {slowniki[nr]}: {regesty_slownik_count[nr]}")
+        suma += regesty_slownik_count[nr]
     print(f"razem: {suma}")
