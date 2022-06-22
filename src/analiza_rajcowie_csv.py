@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 import spacy
 from spacy.matcher import Matcher
-from rajcowie import rule_patterns, short_dict
+from rajcowie import rule_patterns
 
 # mamy bardzo duże pola i bez zwiększenia limitu skrypt się wykłada
 csv.field_size_limit(sys.maxsize)
@@ -26,9 +26,6 @@ slowniki = {1: 'Benedyktyni',
             12: 'Liw'
 }
 
-skroty = short_dict()
-
-
 def clear_text(text: str) -> str:
     """ czyści tekst z tagów html, odnośników bibliograficznych"""
     # nawiasy
@@ -38,22 +35,18 @@ def clear_text(text: str) -> str:
     text = re.sub(pattern, '', text)
     text = text.replace(r'\n', ' ')
 
-    # zamiana skrótów
-    #for word, value in skroty.items():
-    #    text = text.replace(word, value)
-
     return text
 
 
 if __name__ == "__main__":
-    patterns = rule_patterns()
-
     nlp = spacy.load("pl_core_news_lg")
-    matcher = Matcher(nlp.vocab)
-    matcher.add("Monety", patterns=patterns)
-
-    for nr in range(3, 4):
+    
+    for nr in range(1, 13):
         print(f"Słownik: {slowniki[nr]} ({nr})")
+        matcher = Matcher(nlp.vocab)
+        patterns = rule_patterns(slowniki[nr])
+        matcher.add("Rajcowie", patterns=patterns)
+
         lista = []
 
         input_path = Path('.').parent / f'output/data{nr}hasla.csv'

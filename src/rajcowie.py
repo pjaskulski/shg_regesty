@@ -8,7 +8,7 @@
 # rajca z nazwa np. rajca z Wiślicy
 # rajca m. nazwa np. rajca m. Wiślicy
 
-def rule_patterns() -> list:
+def rule_patterns(slownik:str ='') -> list:
     """ definicje reguł """
     patterns = [
         # rajca + przymiotnik (lub parę przymiotników)
@@ -17,142 +17,111 @@ def rule_patterns() -> list:
         [{"LEMMA":"rajca"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
         # rajca + nazwa własna (lub parę nazw)
         [{"LEMMA":"rajca"}, {"POS":"PROPN", "OP": "+"}],
+        # rajca + przymiotnik + nazwa własna (lub parę nazw)
+        [{"LEMMA":"rajca"}, {"POS":"ADJ"}, {"POS":"PROPN", "OP": "+"}],
         # rajca + rzeczownik
         [{"LEMMA":"rajca"}, {"POS":"NOUN"}],
-        # rajca + skrót (geograficzny) np krak. biec. lel.
-        [{"LEMMA":"rajca"}, {"LOWER":"krak"}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"lel"}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"biec"}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"chęc."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"czchow."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"czech."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"czes."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"frank."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"gnieźn."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"imbr."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"jędrz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"kal."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"Klar."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"koprz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"krak."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"ksiąs."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"lel."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"lub."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"łęcz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"magd."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"maz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"miech."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"miej."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"mog."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"mstow."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"niem."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"opocz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"ośw."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"pilzn."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"pol."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"poł."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"pozn."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"pras."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"prosz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"przem."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"rad."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"roz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"san."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"sand."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"sądec."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"sieciech."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"sier."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"siew."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"staniąt."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"starosądec."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"szczyrz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"śl."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"średz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"świętokrz."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"świętop."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"tyn."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"wąch."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"węg."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"wiel."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"wiśl."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"wojn."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"zator."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"zawich."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"zwierzyn."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"żarn."}, {"IS_PUNCT":True}],
-        [{"LEMMA":"rajca"}, {"LOWER":"żyd."}, {"IS_PUNCT":True}],
         # rajca w nazwa (lub parę)
         [{"LEMMA":"rajca"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
         # rajca z nazwa
         [{"LEMMA":"rajca"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
          # rajca m. nazwa
         [{"LEMMA":"rajca"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
+        # to zo wyżej ale w l.m.
+        [{"LEMMA":"rajcowie"}, {"POS":"ADJ", "OP": "+"}],
+        [{"LEMMA":"rajcowie"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
+        [{"LEMMA":"rajcowie"}, {"POS":"PROPN", "OP": "+"}],
+        [{"LEMMA":"rajcowie"}, {"POS":"NOUN"}],
+        [{"LEMMA":"rajcowie"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
+        [{"LEMMA":"rajcowie"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
+        [{"LEMMA":"rajcowie"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
+        [{"LEMMA":"rajce"}, {"POS":"ADJ", "OP": "+"}],
+        [{"LEMMA":"rajce"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
+        [{"LEMMA":"rajce"}, {"POS":"PROPN", "OP": "+"}],
+        [{"LEMMA":"rajce"}, {"POS":"NOUN"}],
+        [{"LEMMA":"rajce"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
+        [{"LEMMA":"rajce"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
+        [{"LEMMA":"rajce"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
     ]
+
+    if slownik == 'Benedyktyni':
+        shortcuts = ["gnieźn", "kiel", "koz", "król", "lub", "lubus", "łysog", "opat", "pap", "rad",
+                    "sand", "sieciech", "sier", "święt", "tyn", "urzęd", "wąch", "wąwol", "wiśl",
+                    "włocł"]
+    elif slownik == 'Chełmno':
+        shortcuts = ["bierzg", "brat", "brod", "chełm", "dzierzg", "gol", "grudz", "kol",
+                    "kow", "krzyż", "kuj", "kurz", "lip", "lub", "magd", "maz", "mich",
+                    "miej", "płoc", "pokrz", "pomez", "radz", "rog", "starogr", "tor", "unisł",
+                    "warm", "włocł"]
+    elif slownik == 'Kraków':
+        shortcuts = ["krak", "lel", "biec", "chęc", "czchow", "czech", "czes", "frank", "gnieźn",
+                    "imbr", "jędrz", "kal", "Klar", "koprz", "ksiąs", "lub", "łęcz", "magd", "maz",
+                    "miech", "miej", "mog", "mstow", "niem", "opocz", "ośw", "pilzn", "pol", "poł",
+                    "pozn", "pras", "prosz", "przem", "rad", "roz", "san", "sand", "sądec",
+                    "sieciech", "sier", "siew", "staniąt", "starosądec", "szczyrz", "śl", "średz",
+                    "świętokrz", "świętop", "tyn", "wąch", "węg", "wiel", "wiśl", "wojn", "zator",
+                    "zawich", "zwierzyn", "żarn", "żyd"]
+    elif slownik == "Czersk":
+        shortcuts = ["bełs", "bial", "biel", "bł", "brzeskuj", "chełm", "ciech", "czer", "czerw",
+                    "droh", "garw", "gąb", "gnieźn", "gost", "grodz", "grój", "kal", "kam", "koln",
+                    "krak", "krzyż", "lit", "liw", "lub", "łęcz", "łomż", "łuk", "magd", "mak",
+                    "maz", "miej", "mław", "nowom", "ostroł", "ostrow", "płoc", "płoń", "pol",
+                    "pozn", "przas", "pułt", "rac", "rad", "radz", "raw", "roż", "sand", "sąch",
+                    "ser", "sierp", "soch", "stęż", "szreń", "tarcz", "war", "warsz", "wąs", "węg",
+                    "wil", "wis", "wlkp", "włocł", "wysz", "zakr", "zawkrz", "ziem", "żyd."]
+    elif slownik == 'Lublin':
+        shortcuts = ["krak", "lub", "łuk", "magd", "rad", "sand", "węg"]
+    elif slownik == 'Lublin_zaginione':
+        shortcuts = [] # nie ma skrótów geograficznych?
+    elif slownik == 'Płock':
+        shortcuts = ["biel", "bł", "chełm", "ciech", "czer", "czerw", "dobrz", "flam", "gniezn", 
+                    "gost", "grodz", "grój", "kam", "kol", "krak", "krzyż", "kuj", "liw", "łęcz", 
+                    "łom", "łow", "magd", "mak", "maz", "miej", "mław", "niedzb", "now", "nowogr",
+                    "ostroł", "ostrow", "płoc", "płoń", "pom", "pozn", "pras", "przas", "pułt", 
+                    "rac", "raw", "róż", "sąch", "ser", "siel", "sierp", "soch", "szr", "śląs", 
+                    "war", "warsz", "wąs", "węg", "wis", "wysz", "zakr", "zamb", "zawkrz", "żyd."]
+    elif slownik == 'Poznań':
+        shortcuts = ["bab", "biech", "bledz", "bnin", "brand", "buk", "bydg", "chełm", "czarnk", 
+                    "dobrz", "flam", "frank", "giec", "głog", "gnieźn", "inowrocł", "kal", "kam", 
+                    "karczm", "karz", "kcyn", "klar", "kon", "kostrz", "kośc", "krak", "krob", 
+                    "krusz", "krzyw", "ksiąs", "kuj", "lądz", "lub", "łekn", "łęcz", "magd", "maz", 
+                    "miej", "międz", "młp", "mod", "mogil", "nak", "niem", "ober", "odol", "ołob", 
+                    "opat", "ostrz", "owin", "parad", "pobiedz", "pol", "pom", "pozn", "pras", "przem", 
+                    "pszcz", "pyzdr", "radz", "rogoz", "sant", "sier", "soł", "starogr", "śląs", 
+                    "średz", "śrem", "trzem", "wał", "wągr", "węg", "wielich", "wlkp", "włocł", 
+                    "wrocł", "wsch", "zbąsz", "żnin", "żon", "żyd."]
+    elif slownik == 'Sanok':
+        shortcuts = ["biec", "gr", "krak", "krośn", "lw", "łac", "magd", "niem", "pilzn", "pol", 
+                    "przem", "samb", "san", "sandom", "sądec", "węg", "żydacz."]
+    elif slownik == 'Wieluń':
+        shortcuts = ["bolesł", "gnieźń", "kal", "krak", "magd", "miej", "niem", "ostrz", "pozn", 
+                    "sier", "średz", "wiel", "wrocł."]
+    elif slownik == 'Wyszogród':
+        shortcuts = ["biel", "Bł", "chełm", "Ciech", "czer", "Czerw", "dobrz", "gniezn", "Gost", 
+                    "grój", "Kam", "kol", "liw", "Łęcz", "łom", "Łow", "mak", "Maz", "miej", "mław", 
+                    "Niedz", "nur", "Ostroł", "ostrow", "płoc", "płoń", "pozn", "pras", "Przas", 
+                    "Pułt", "Rac", "raw", "róż", "Ser", "siel", "Soch", "Szr", "war", "Warsz", 
+                    "Wąs", "węg", "wis", "Wysz", "Zakr", "Zamb", "zawkrz."]
+    elif slownik == 'Warszawa':
+        shortcuts = ["bełs", "bł", "chełm", "ciech", "czer", "czerw", "gnieźn", "gost", "grój", 
+                    "kam", "krak", "krzyż", "liw", "łęcz", "łomż", "magd", "mak", "maz", "miej", 
+                    "nur", "ostroł", "ostrow", "płoc", "płoń", "pol", "pozn", "pras", "pułt", 
+                    "rac", "raw", "roż", "sand", "ser", "soch", "tarcz", "war", "warsz", "węg", 
+                    "wis", "wlkp", "włocł", "wysz", "zakr", "zawkrz", "żyd."]
+    elif slownik == 'Liw':
+        shortcuts = ["bełs", "bial", "biel", "bł", "chełm", "ciech", "czer", "czerw", "droh", 
+                    "garw", "gąb", "gnieźn", "gost", "grodz", "grój", "kam", "koln", "krak", 
+                    "król", "krzyż", "lit", "liw", "łęcz", "łomż", "łuk", "magd", "mak", "maz", 
+                    "miej", "mław", "mszczon", "niedz", "niem", "nowom", "nur", "ostroł", "ostrow", 
+                    "płoc", "płoń", "pol", "pozn", "pras", "przas", "pułt", "rac", "radz", "raw", 
+                    "roż", "sand", "sąch", "ser", "sierp", "soch", "szreń", "tarcz", "war", "warsz", 
+                    "wąs", "węg", "wil", "wis", "wlkp", "włocł", "wysz", "zakr", "zamb", "zawkrz", 
+                    "ziem", "żyd."]
+
+    for shortcut in shortcuts:
+        # rajca, rajcy + skrót (geograficzny) np krak. biec. lel.
+        patterns.append([{"LEMMA":"rajca"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
+        patterns.append([{"LEMMA":"rajce"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
+        patterns.append([{"LEMMA":"rajcowie"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
+
     return patterns
-
-
-def short_dict() -> dict:
-    """ definicje skrótów dla słownika krakowskiego """
-    result = {
-        "biec.":"biecki",
-        "chęc.":"chęciński",
-        "czchow.":"czchowski",
-        "czech.":"czechowski",
-        "czes.":"czeski",
-        "frank.":"frankoński",
-        "gnieźn.":"gnieźnieński",
-        "imbr.":"imbramowicki",
-        "jędrz.":"jędrzejowski",
-        "kal.":"kaliski",
-        "Klar.":"Klaryski",
-        "koprz.":"koprzywnicki",
-        "krak.":"krakowski",
-        "ksiąs.":"ksiąski",
-        "lel.":"lelowski",
-        "lub.":"lubelski",
-        "łęcz.":"łęczycki",
-        "magd.":"magdeburski",
-        "maz.":"mazowiecki",
-        "miech.":"miechowski",
-        "miej.":"miejski",
-        "mog.":"mogilski",
-        "mstow.":"mstowski",
-        "niem.":"niemiecki",
-        "opocz.":"opoczyński",
-        "ośw.":"oświęcimski",
-        "pilzn.":"pilzneński",
-        "pol.":"polski",
-        "poł.":"połaniecki",
-        "pozn.":"poznański",
-        "pras.":"praskie",
-        "prosz.":"proszowski",
-        "przem.":"przemyski",
-        "rad.":"radomski",
-        "roz.":"rozpierski",
-        "san.":"sanocki",
-        "sand.":"sandomierski",
-        "sądec.":"sądecki",
-        "sieciech.":"sieciechowski",
-        "sier.":"sieradzki",
-        "siew.":"siewierski",
-        "staniąt.":"staniątecki",
-        "starosądec.":"starosądecki",
-        "szczyrz.":"szczyrzycki",
-        "śl.":"śląski",
-        "średz.":"średzki",
-        "świętokrz.":"świętokrzyski",
-        "świętop.":"świętopietrze",
-        "tyn.":"tyniecki",
-        "wąch.":"wąchocki",
-        "węg.":"węgierski",
-        "wiel.":"wieluński",
-        "wiśl.":"wiślicki",
-        "wojn.":"wojnicki",
-        "zator.":"Zatorski",
-        "zawich.":"zawichojski",
-        "zwierzyn.":"zwierzyniecki",
-        "żarn.":"żarnowski",
-        "żyd.":"żydowski",
-    }
-
-    return result 
