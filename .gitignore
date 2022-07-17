@@ -133,3 +133,13 @@ output/*.txt
 wyniki/
 wyniki_old/
 *.zip
+lawnicy/
+pisarze/
+burmistrzowie/
+soltysi/
+podwojtowie/
+sedziowie/
+wojtowie/
+rajcowie/
+*.docx
+*.docx#
