@@ -22,12 +22,16 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"sędzia"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
         # sędzia miasta nazwa
         [{"LEMMA":"sędzia"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
+        # sędzia w mieście nazwa
+        [{"LEMMA":"sędzia"}, {"LOWER":"w"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
         # sędzia wsi nazwa
         [{"LEMMA":"sędzia"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         # sędzia z wsi nazwa
         [{"LEMMA":"sędzia"}, {"LOWER":"z"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         # sędzia ze wsi nazwa
         [{"LEMMA":"sędzia"}, {"LOWER":"ze"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
+        # sędzia we wsi nazwa
+        [{"LEMMA":"sędzia"}, {"LOWER":"we"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         # sędzia sądu wyższego pr. niem. na + nazwa
         [{"LEMMA":"sędzia"}, {"LEMMA":"sąd"}, {"POS":"ADJ"}, {"LOWER":"pr"}, {"IS_PUNCT":True}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"LOWER":"na"}, {"POS":"PROPN"}],
         # sędzia sądu leńskiego na + nazwa (lub w + nazwa)
@@ -40,7 +44,7 @@ def rule_patterns(slownik:str ='') -> list:
         # sędzia sądu leńskiego + przymiotnik
         [{"LEMMA":"sędzia"}, {"LEMMA":"sąd"}, {"POS":"ADJ"}, {"POS":"ADJ"}],
         [{"LEMMA":"sędzia"}, {"LEMMA":"sąd"}, {"LEMMA":"leński"}, {"POS":"ADJ"}],
-        # sąd leński goleski
+        # sąd leński goleski (generalnie z 2 przymiotnikami)
         [{"LEMMA":"sąd"}, {"POS":"ADJ"}, {"POS":"ADJ"}],
         # sędzia sądu pr. niem. + nazwa
         [{"LEMMA":"sędzia"}, {"LEMMA":"sąd"}, {"LOWER":"pr"}, {"IS_PUNCT":True}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"POS":"PROPN"}],
@@ -147,6 +151,8 @@ def rule_patterns(slownik:str ='') -> list:
         patterns.append([{"LEMMA":"sędzia"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         # sędzia sądu leńskiego na + rzeczownik + skrót (geograficzny)
         patterns.append([{"LEMMA":"sędzia"}, {"LEMMA":"sąd"}, {"POS":"ADJ"}, {"LOWER":"na"}, {"POS":"NOUN"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
+        # sędzia sądu + przymiotnik + skrót geogr.
+        patterns.append([{"LEMMA":"sędzia"}, {"LEMMA":"sąd"}, {"POS":"ADJ"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         
         # sędzia z + skrót miejscowości np.: A.
         for litera in litery:
