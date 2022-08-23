@@ -40,7 +40,16 @@ def clear_text(text: str) -> str:
 
 if __name__ == "__main__":
     nlp = spacy.load("pl_core_news_lg", exclude=["ner"])
-    
+
+    # specjalna obsługa funkcji landwójt (w modelu dla języka pl nie ma poprawnej lematyzacji)
+    nlp.get_pipe("attribute_ruler").add([[{"TEXT": "landwójta"}]], {"LEMMA": "landwójt"})
+    nlp.get_pipe("attribute_ruler").add([[{"TEXT": "landwójtem"}]], {"LEMMA": "landwójt"})
+    nlp.get_pipe("attribute_ruler").add([[{"TEXT": "landwójtowi"}]], {"LEMMA": "landwójt"})
+    nlp.get_pipe("attribute_ruler").add([[{"TEXT": "landwójci"}]], {"LEMMA": "landwójt"})
+    nlp.get_pipe("attribute_ruler").add([[{"TEXT": "landwójtów"}]], {"LEMMA": "landwójt"})
+    nlp.get_pipe("attribute_ruler").add([[{"TEXT": "landwójtami"}]], {"LEMMA": "landwójt"})
+    nlp.get_pipe("attribute_ruler").add([[{"TEXT": "landwójtom"}]], {"LEMMA": "landwójt"})
+
     for nr in range(1, 13):
         print(f"Słownik: {slowniki[nr]} ({nr})")
         matcher = Matcher(nlp.vocab)

@@ -11,9 +11,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LOWER":"podwójcina"}, {"POS":"ADJ", "OP": "+"}],
         [{"LOWER":"podwójci"}, {"POS":"ADJ", "OP": "+"}],
         [{"LOWER":"landwójt"}, {"POS":"ADJ", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"POS":"ADJ", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"POS":"ADJ", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"POS":"ADJ", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"POS":"ADJ", "OP": "+"}],
         # podwójt + przymiotnik i przymiotnik
         [{"LEMMA":"podwójt"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
@@ -22,9 +19,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójcina"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
         [{"LOWER":"podwójcina"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
         [{"LEMMA":"landwójt"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
-        [{"LOWER":"landwójta"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
-        [{"LOWER":"landwójtem"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
-        [{"LOWER":"landwójtowi"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
         [{"LEMMA":"wicesołtys"}, {"POS":"ADJ"}, {"LOWER":"i"}, {"POS":"ADJ"}],
         # podwójt + nazwa własna (lub parę nazw)
         [{"LEMMA":"podwójt"}, {"POS":"PROPN", "OP": "+"}],
@@ -33,9 +27,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójcina"}, {"POS":"PROPN", "OP": "+"}],
         [{"LOWER":"podwójcina"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"POS":"PROPN", "OP": "+"}],
         # podwójt + przymiotnik + nazwa własna (lub parę nazw)
         [{"LEMMA":"podwójt"}, {"POS":"ADJ"}, {"POS":"PROPN", "OP": "+"}],
@@ -44,9 +35,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójcina"}, {"POS":"ADJ"}, {"POS":"PROPN", "OP": "+"}],
         [{"LOWER":"podwójcina"}, {"POS":"ADJ"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"POS":"ADJ"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"POS":"ADJ"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"POS":"ADJ"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"POS":"ADJ"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"POS":"ADJ"}, {"POS":"PROPN", "OP": "+"}],
         # podwójt + rzeczownik
         [{"LEMMA":"podwójt"}, {"POS":"NOUN", "OP": "+"}],
@@ -55,9 +43,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójcina"}, {"POS":"NOUN", "OP": "+"}],
         [{"LOWER":"podwójcina"}, {"POS":"NOUN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"POS":"NOUN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"POS":"NOUN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"POS":"NOUN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"POS":"NOUN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"POS":"NOUN", "OP": "+"}],
         # podwójt w nazwa (lub parę)
         [{"LEMMA":"podwójt"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
@@ -65,9 +50,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójtowy"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"podwójcina"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"LOWER":"w"}, {"POS":"PROPN", "OP": "+"}],
         # podwójt w + rzeczownik (lub parę)
         [{"LEMMA":"podwójt"}, {"LOWER":"w"}, {"POS":"NOUN", "OP": "+"}],
@@ -75,9 +57,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójtowy"}, {"LOWER":"w"}, {"POS":"NOUN", "OP": "+"}],
         [{"LEMMA":"podwójcina"}, {"LOWER":"w"}, {"POS":"NOUN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"LOWER":"w"}, {"POS":"NOUN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"LOWER":"w"}, {"POS":"NOUN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"LOWER":"w"}, {"POS":"NOUN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"LOWER":"w"}, {"POS":"NOUN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"LOWER":"w"}, {"POS":"NOUN", "OP": "+"}],
         # podwójt z nazwa
         [{"LEMMA":"podwójt"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
@@ -85,9 +64,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójtowy"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"podwójcina"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
         # podwójt z + rzeczownik
         [{"LEMMA":"podwójt"}, {"LOWER":"z"}, {"POS":"NOUN", "OP": "+"}],
@@ -95,18 +71,12 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójtowy"}, {"LOWER":"z"}, {"POS":"NOUN", "OP": "+"}],
         [{"LEMMA":"podwójcina"}, {"LOWER":"z"}, {"POS":"NOUN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"LOWER":"z"}, {"POS":"NOUN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"LOWER":"z"}, {"POS":"NOUN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"LOWER":"z"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"LOWER":"z"}, {"POS":"NOUN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"LOWER":"z"}, {"POS":"NOUN", "OP": "+"}],
         # landwójt ze + nazwa
         [{"LOWER":"podwójci"}, {"LOWER":"ze"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"podwójtowy"}, {"LOWER":"ze"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"podwójcina"}, {"LOWER":"ze"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"LOWER":"ze"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"LOWER":"ze"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"LOWER":"ze"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"LOWER":"ze"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"LOWER":"ze"}, {"POS":"PROPN", "OP": "+"}],
         # podwójt m. nazwa
         [{"LEMMA":"podwójt"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
@@ -115,9 +85,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójcina"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
         [{"LOWER":"podwójcina"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"POS":"PROPN", "OP": "+"}],
         # podwójt miasta nazwa
         [{"LEMMA":"podwójt"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
@@ -126,9 +93,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójcina"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
         [{"LOWER":"podwójcina"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"LEMMA":"miasto"}, {"POS":"PROPN", "OP": "+"}],
         # podwójt wsi nazwa
         [{"LEMMA":"podwójt"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
@@ -137,9 +101,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójcina"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         [{"LOWER":"podwójcina"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         # podwójt z wsi nazwa
         [{"LEMMA":"podwójt"}, {"LOWER":"z"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
@@ -148,9 +109,6 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójcina"}, {"LOWER":"z"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         [{"LOWER":"podwójcina"}, {"LOWER":"z"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"landwójt"}, {"LOWER":"z"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójta"}, {"LOWER":"z"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtem"}, {"LOWER":"z"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
-        [{"LOWER":"landwójtowi"}, {"LOWER":"z"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         [{"LEMMA":"wicesołtys"}, {"LOWER":"z"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
         # podwójt ze wsi nazwa
         [{"LEMMA":"podwójt"}, {"LOWER":"ze"}, {"LEMMA":"wieś"}, {"POS":"PROPN", "OP": "+"}],
@@ -177,14 +135,8 @@ def rule_patterns(slownik:str ='') -> list:
         [{"LEMMA":"podwójt"}, {"POS":"ADJ"}, {"LEMMA":"sąd"}, {"LOWER":"w", "OP":"?"}, {"POS":"PROPN"}],
         # landwójt sądu pr. niem. + nazwa
         [{"LEMMA":"landwójt"}, {"LEMMA":"sąd"}, {"LOWER":"pr"}, {"IS_PUNCT":True}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"LOWER":"w", "OP":"?"}, {"POS":"PROPN"}],
-        [{"LOWER":"landwójta"}, {"LEMMA":"sąd"}, {"LOWER":"pr"}, {"IS_PUNCT":True}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"LOWER":"w", "OP":"?"}, {"POS":"PROPN"}],
-        [{"LOWER":"landwójtem"}, {"LEMMA":"sąd"}, {"LOWER":"pr"}, {"IS_PUNCT":True}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"LOWER":"w", "OP":"?"}, {"POS":"PROPN"}],
-        [{"LOWER":"landwójtowi"}, {"LEMMA":"sąd"}, {"LOWER":"pr"}, {"IS_PUNCT":True}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"LOWER":"w", "OP":"?"}, {"POS":"PROPN"}],
         # landwójt sądu prawa niem. + nazwa
         [{"LEMMA":"landwójt"}, {"LEMMA":"sąd"}, {"LOWER":"prawa"}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"LOWER":"w", "OP":"?"}, {"POS":"PROPN"}],
-        [{"LOWER":"landwójta"}, {"LEMMA":"sąd"}, {"LOWER":"prawa"}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"LOWER":"w", "OP":"?"}, {"POS":"PROPN"}],
-        [{"LOWER":"landwójtem"}, {"LEMMA":"sąd"}, {"LOWER":"prawa"}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"LOWER":"w", "OP":"?"}, {"POS":"PROPN"}],
-        [{"LOWER":"landwójtowi"}, {"LEMMA":"sąd"}, {"LOWER":"prawa"}, {"LOWER":"niem"}, {"IS_PUNCT":True}, {"LOWER":"w", "OP":"?"}, {"POS":"PROPN"}],
         # podwójci wyższego sądu [prawa niem.]
         [{"LOWER":"podwójci"}, {"POS":"ADJ"}, {"LEMMA":"sąd"}, {"IS_PUNCT":True, "OP":"?"}, {"LEMMA":"prawo"}, {"LOWER":"niem"}, {"IS_PUNCT":True}],
         [{"LOWER":"podwójci"}, {"LEMMA":"wysoki"}, {"LEMMA":"sąd"}, {"IS_PUNCT":True, "OP":"?"}, {"LEMMA":"prawo"}, {"LOWER":"niem"}, {"IS_PUNCT":True}],
@@ -274,9 +226,6 @@ def rule_patterns(slownik:str ='') -> list:
         patterns.append([{"LEMMA":"podwójcina"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LOWER":"podwójcina"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LEMMA":"landwójt"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójta"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójtem"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójtowi"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LEMMA":"wicesołtys"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         # podwójt + 'z' + skrót (geograficzny) np krak. biec. lel.
         patterns.append([{"LEMMA":"podwójt"}, {"LOWER":"z"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
@@ -285,9 +234,6 @@ def rule_patterns(slownik:str ='') -> list:
         patterns.append([{"LEMMA":"podwójcina"}, {"LOWER":"z"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LOWER":"podwójcina"}, {"LOWER":"z"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LEMMA":"landwójt"}, {"LOWER":"z"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójta"}, {"LOWER":"z"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójtem"}, {"LOWER":"z"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójtowi"}, {"LOWER":"z"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LEMMA":"wicesołtys"}, {"LOWER":"z"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         # podwójt + 'w' + skrót (geograficzny) np krak. biec. lel.
         patterns.append([{"LEMMA":"podwójt"}, {"LOWER":"w"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
@@ -296,9 +242,6 @@ def rule_patterns(slownik:str ='') -> list:
         patterns.append([{"LEMMA":"podwójcina"}, {"LOWER":"w"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LOWER":"podwójcina"}, {"LOWER":"w"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LEMMA":"landwójt"}, {"LOWER":"w"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójta"}, {"LOWER":"w"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójtem"}, {"LOWER":"w"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójtowi"}, {"LOWER":"w"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LEMMA":"wicesołtys"}, {"LOWER":"w"}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         # podwójt + 'm' + skrót (geograficzny) np krak. biec. lel.
         patterns.append([{"LEMMA":"podwójt"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
@@ -307,9 +250,6 @@ def rule_patterns(slownik:str ='') -> list:
         patterns.append([{"LEMMA":"podwójcina"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LOWER":"podwójcina"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LEMMA":"landwójt"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójta"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójtem"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
-        patterns.append([{"LOWER":"landwójtowi"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
         patterns.append([{"LEMMA":"wicesołtys"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"LOWER":f"{shortcut}"}, {"IS_PUNCT":True}])
 
         # podwójt z + skrót miejscowości np.: A.
@@ -321,21 +261,14 @@ def rule_patterns(slownik:str ='') -> list:
             patterns.append([{"LOWER":"podwójci"}, {"LEMMA":"wieś"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
             patterns.append([{"LEMMA":"podwójt"}, {"LEMMA":"miasto"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
             patterns.append([{"LOWER":"podwójci"}, {"LEMMA":"miasto"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
-            patterns.append([{"LOWER":"podwójci"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}]) 
-            patterns.append([{"LOWER":"podwójci"}, {"LOWER":"z"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}]) 
-            patterns.append([{"LOWER":"podwójci"}, {"LOWER":"w"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}]) 
+            patterns.append([{"LOWER":"podwójci"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
+            patterns.append([{"LOWER":"podwójci"}, {"LOWER":"z"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
+            patterns.append([{"LOWER":"podwójci"}, {"LOWER":"w"}, {"LOWER":"m"}, {"IS_PUNCT":True}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
             patterns.append([{"LEMMA":"podwójtowy"}, {"LOWER":"z"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
             patterns.append([{"LEMMA":"podwójcina"}, {"LOWER":"z"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
             patterns.append([{"LOWER":"podwójcina"}, {"LOWER":"z"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
             patterns.append([{"LEMMA":"landwójt"}, {"LOWER":"z"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
             patterns.append([{"LEMMA":"landwójt"}, {"LOWER":"w"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
-            patterns.append([{"LOWER":"landwójta"}, {"LOWER":"z"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
-            patterns.append([{"LOWER":"landwójtem"}, {"LOWER":"z"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
-            patterns.append([{"LOWER":"landwójtowi"}, {"LOWER":"z"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
-            patterns.append([{"LEMMA":"landwójt"}, {"LEMMA":"wieś"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
-            patterns.append([{"LOWER":"landwójta"}, {"LEMMA":"wieś"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
-            patterns.append([{"LOWER":"landwójtem"}, {"LEMMA":"wieś"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
-            patterns.append([{"LOWER":"landwójtowi"}, {"LEMMA":"wieś"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
             patterns.append([{"LEMMA":"wicesołtys"}, {"LOWER":"z"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
             patterns.append([{"LEMMA":"wicesołtys"}, {"LEMMA":"wieś"}, {"TEXT":f"{litera}"}, {"IS_PUNCT":True}])
 
